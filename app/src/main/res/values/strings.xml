@@ -6,8 +6,14 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="atau">atau</string>
-    <string name="masuk_dengan_facebook">Masuk dengan Facebook</string>
+    <string name="masuk_dengan_facebook">Facebook</string>
     <string name="masuk_dengan_twitter">Masuk dengan Twitter</string>
     <string name="belum_punya_akun">Belum punya akun? Daftar di sini</string>
-    <string name="signup">Signup</string>
+    <string name="signup">Daftar</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="password_repeat">Ulangi Password</string>
+    <string name="username">Username</string>
+    <string name="nama_lengkap">Nama Lengkap</string>
+    <string name="masuk_dengan_google">Google</string>
+    <string name="lupa_password">Lupa Password?</string>
 </resources>

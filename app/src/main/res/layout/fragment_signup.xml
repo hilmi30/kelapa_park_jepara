@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="30dp"
+            android:layout_gravity="center"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@mipmap/logo_kelapa_park2"
+            android:contentDescription="@string/logo_login" />
+
+        <EditText
+            android:text=""
+            android:inputType="textEmailAddress"
+            android:textSize="16sp"
+            android:drawableStart="@mipmap/ic_account_circle_white_24dp"
+            android:drawablePadding="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edit_text_style"
+            android:padding="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/nama_lengkap"
+            android:textColor="@color/white"
+            android:textColorHint="@color/whiteTransparent"/>
+
+        <EditText
+            android:text=""
+            android:inputType="textEmailAddress"
+            android:textSize="16sp"
+            android:drawableStart="@mipmap/ic_account_box_white_24dp"
+            android:drawablePadding="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edit_text_style"
+            android:padding="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/username"
+            android:textColor="@color/white"
+            android:textColorHint="@color/whiteTransparent"/>
+
+        <EditText
+            android:text=""
+            android:inputType="textEmailAddress"
+            android:textSize="16sp"
+            android:drawableStart="@mipmap/ic_email_white_24dp"
+            android:drawablePadding="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edit_text_style"
+            android:padding="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email"
+            android:textColor="@color/white"
+            android:textColorHint="@color/whiteTransparent"/>
+
+        <EditText
+            android:text=""
+            android:inputType="textPassword"
+            android:textSize="16sp"
+            android:drawableStart="@mipmap/ic_vpn_key_white_24dp"
+            android:drawablePadding="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edit_text_style"
+            android:padding="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:textColor="@color/white"
+            android:textColorHint="@color/whiteTransparent"/>
+
+        <EditText
+            android:text=""
+            android:inputType="textPassword"
+            android:textSize="16sp"
+            android:drawableStart="@mipmap/ic_vpn_key_white_24dp"
+            android:drawablePadding="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edit_text_style"
+            android:padding="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password_repeat"
+            android:textColor="@color/white"
+            android:textColorHint="@color/whiteTransparent"/>
+
+        <Button
+            android:background="@drawable/button_common_style"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/signup"/>
+    </LinearLayout>
+</ScrollView>

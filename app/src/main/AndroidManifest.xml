@@ -13,7 +13,8 @@
         <!-- Main Activity -->
         <activity android:name=".MainActivity" />
         <!-- Splashscreen Activity -->
-        <activity android:name=".SplashscreenActivity"
+        <activity
+            android:name=".SplashscreenActivity"
             android:theme="@style/NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,8 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--LoginActivity-->
-        <activity android:name=".LoginActivity"
+        <!--Auth Activity-->
+        <activity android:name=".AuthActivity"
             android:theme="@style/Transparent"
             android:windowSoftInputMode="stateHidden"/>
     </application>

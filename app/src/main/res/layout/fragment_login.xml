@@ -3,9 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@mipmap/coconut"
-    tools:context="com.perusdajepara.kelapaparkjepara.LoginActivity">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:orientation="vertical"
@@ -13,16 +11,18 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="20dp"
             android:layout_gravity="center"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:src="@mipmap/logo_kelapa_park2"
             android:contentDescription="@string/logo_login" />
 
         <EditText
-            android:maxLines="1"
+            android:text=""
+            android:inputType="textEmailAddress"
+            android:textSize="16sp"
             android:drawableStart="@mipmap/ic_email_white_24dp"
             android:drawablePadding="20dp"
             android:layout_marginLeft="20dp"
@@ -37,7 +37,9 @@
             android:textColorHint="@color/whiteTransparent"/>
 
         <EditText
-            android:maxLines="1"
+            android:text=""
+            android:inputType="textPassword"
+            android:textSize="16sp"
             android:drawableStart="@mipmap/ic_vpn_key_white_24dp"
             android:drawablePadding="20dp"
             android:layout_marginLeft="20dp"
@@ -65,6 +67,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/lupa_password"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:drawablePadding="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/atau"
             android:textColor="@color/white"
             android:textSize="16sp"
@@ -74,57 +86,55 @@
             android:drawableStart="@mipmap/line"
             android:drawablePadding="20dp"/>
 
-        <Button
-            android:textAllCaps="false"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:drawableStart="@mipmap/logo_fb_white"
-            android:background="@drawable/button_fb_style"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+        <LinearLayout
+            android:layout_margin="20dp"
+            android:gravity="center"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/masuk_dengan_facebook" />
+            android:layout_height="wrap_content">
 
-        <Button
-            android:textAllCaps="false"
-            android:drawableStart="@mipmap/logi_twitter_white"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:background="@drawable/button_twitter_style"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/masuk_dengan_twitter" />
+            <Button
+                android:layout_marginEnd="5dp"
+                style="?android:attr/buttonBarButtonStyle"
+                android:textAllCaps="false"
+                android:paddingStart="10dp"
+                android:paddingEnd="0dp"
+                android:drawableStart="@mipmap/logo_fb_white"
+                android:background="@drawable/button_fb_style"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/masuk_dengan_facebook"
+                android:layout_weight="1"/>
+
+            <Button
+                android:layout_weight="1"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_marginStart="5dp"
+                android:textAllCaps="false"
+                android:drawableStart="@mipmap/google_logo"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:background="@drawable/button_google_style"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/masuk_dengan_google" />
+
+        </LinearLayout>
 
         <TextView
+            android:id="@+id/login_go_to_signup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/belum_punya_akun"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:layout_gravity="center"
-            android:layout_marginTop="50dp"
-            android:drawablePadding="20dp"/>
-
-        <!--<Button-->
-            <!--android:background="@drawable/button_common_style"-->
-            <!--android:textColor="@color/white"-->
-            <!--android:textSize="16sp"-->
-            <!--android:layout_marginTop="10dp"-->
-            <!--android:layout_marginLeft="20dp"-->
-            <!--android:layout_marginRight="20dp"-->
-            <!--android:layout_marginBottom="10dp"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="@string/signup"/>-->
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"/>
     </LinearLayout>
 
 </ScrollView>
