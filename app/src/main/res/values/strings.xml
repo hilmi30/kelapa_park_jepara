@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Kelapa Park Jepara</string>
+    <string name="desc_splash_logo">splash_logo</string>
+    <string name="logo_login">logo_login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="atau">atau</string>
+    <string name="masuk_dengan_facebook">Masuk dengan Facebook</string>
+    <string name="masuk_dengan_twitter">Masuk dengan Twitter</string>
+    <string name="belum_punya_akun">Belum punya akun? Daftar di sini</string>
+    <string name="signup">Signup</string>
 </resources>

@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#054325</color>
+    <color name="colorPrimaryDark">#08311C</color>
+    <color name="colorAccent">#00965E</color>
+    <color name="blackTransparent">#4D000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="whiteTransparent">#80FFFFFF</color>
+    <color name="blueFb">#3B5998</color>
+    <color name="blueTwitter">#00ACED</color>
+    <color name="colorTransparent">#00FFFFFF</color>
+    <color name="black">#000000</color>
 </resources>
