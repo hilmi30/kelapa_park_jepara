@@ -16,4 +16,17 @@
     <string name="nama_lengkap">Nama Lengkap</string>
     <string name="masuk_dengan_google">Google</string>
     <string name="lupa_password">Lupa Password?</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="beranda">Beranda</string>
+    <string name="peta">Peta</string>
+    <string name="tentang_kelapa_park">Tentang Kelapa Park</string>
+    <string name="media_sosial">Media Sosial</string>
+    <string name="website">Website</string>
+    <string name="facebook">Facebook</string>
+    <string name="instagram">Instagram</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="tentang">Tentang</string>
+    <string name="navbar_open">navbar_open</string>
+    <string name="navbar_close">navbar_close</string>
 </resources>

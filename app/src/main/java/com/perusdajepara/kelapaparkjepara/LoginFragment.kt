@@ -26,7 +26,23 @@ class LoginFragment : Fragment() {
             toSignup()
         }
 
+        val goToResetPass = v.findViewById<TextView>(R.id.login_lupa_password)
+        goToResetPass.setOnClickListener {
+            toResetPass()
+        }
+
         return v
+    }
+
+    private fun toResetPass() {
+        val resetFragment = ResetPasswordFragment()
+        val fragmentManager = fragmentManager
+        val fragmentTrans = fragmentManager.beginTransaction()
+        fragmentTrans.setCustomAnimations(R.anim.slide_out_right, R.anim.slide_in_left,
+                R.anim.slide_in_right, R.anim.slide_out_left)
+        fragmentTrans.replace(R.id.auth_container, resetFragment, ResetPasswordFragment::class.java.simpleName)
+        fragmentTrans.addToBackStack(null)
+        fragmentTrans.commit()
     }
 
     private fun toSignup() {
@@ -40,4 +56,4 @@ class LoginFragment : Fragment() {
         fragmentTrans.commit()
     }
 
-}// Required empty public constructor
+}
