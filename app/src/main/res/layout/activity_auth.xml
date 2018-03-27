@@ -6,6 +6,6 @@
     android:layout_height="match_parent"
     android:id="@+id/auth_container"
     android:background="@mipmap/coconut"
-    tools:context="com.perusdajepara.kelapaparkjepara.AuthActivity">
+    tools:context="com.perusdajepara.kelapaparkjepara.auth.AuthActivity">
 
 </FrameLayout>

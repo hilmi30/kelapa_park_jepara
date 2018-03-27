@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/nav_beranda"
-        android:title="@string/beranda"/>
+        android:title="@string/beranda"
+        android:icon="@drawable/ic_home_black_24dp"/>
 
     <item android:id="@+id/nav_peta"
-        android:title="@string/peta"/>
+        android:title="@string/peta"
+        android:icon="@drawable/ic_map_black_24dp"/>
 
     <item android:id="@+id/nav_tentang"
-        android:title="@string/tentang"/>
+        android:title="@string/tentang"
+        android:icon="@drawable/ic_info_black_24dp"/>
+
+    <item android:title="@string/media_sosial">
+        <menu>
+            <item android:id="@+id/nav_website"
+                android:icon="@drawable/ic_grid_world"
+                android:title="@string/website"/>
+
+            <item android:id="@+id/nav_fb"
+                android:icon="@drawable/ic_facebook_logo"
+                android:title="@string/facebook"/>
+
+            <item android:id="@+id/nav_instagram"
+                android:icon="@drawable/ic_instagram"
+                android:title="@string/instagram"/>
+        </menu>
+    </item>
+
 
 </menu>

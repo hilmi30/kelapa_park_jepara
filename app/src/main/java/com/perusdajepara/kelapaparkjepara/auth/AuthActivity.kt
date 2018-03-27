@@ -1,7 +1,8 @@
-package com.perusdajepara.kelapaparkjepara
+package com.perusdajepara.kelapaparkjepara.auth
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.perusdajepara.kelapaparkjepara.R
 
 class AuthActivity : AppCompatActivity() {
 

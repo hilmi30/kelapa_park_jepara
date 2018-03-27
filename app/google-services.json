@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1008048029935",
+    "firebase_url": "https://kelapaparkjepara.firebaseio.com",
+    "project_id": "kelapaparkjepara",
+    "storage_bucket": "kelapaparkjepara.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1008048029935:android:08b5f8fae8f54411",
+        "android_client_info": {
+          "package_name": "com.perusdajepara.kelapaparkjepara"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1008048029935-ajl34iamvdk4dksd5ivlvppbhub62kst.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.perusdajepara.kelapaparkjepara",
+            "certificate_hash": "6d9e437676ca2d8fa0ca0b80f1f312f6d02ea7b7"
+          }
+        },
+        {
+          "client_id": "1008048029935-oehaeropo45uvj8d4p31r1s4ulc75g7j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoNkSaKR6kOu85l9INde8cwwE7CB-t_jQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1008048029935-oehaeropo45uvj8d4p31r1s4ulc75g7j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
