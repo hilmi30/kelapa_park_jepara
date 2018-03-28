@@ -9,54 +9,79 @@ import android.support.v4.view.ViewPager
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.Toolbar
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.perusdajepara.kelapaparkjepara.mainfragments.*
 import com.viewpagerindicator.CirclePageIndicator
 import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity(){
 
+    val ERROR_READ_VALUE = "error_read_value"
 
     var mToggle: ActionBarDrawerToggle? = null
+    var database = FirebaseDatabase.getInstance().reference
+
+    var img: List<String>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // set toolbar
         val toolbar = findViewById<Toolbar>(R.id.nav_toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        val pager = findViewById<ViewPager>(R.id.main_view_pager)
+        val circle = findViewById<CirclePageIndicator>(R.id.main_circle_indicator)
+        val density = resources.displayMetrics.density
+
+        // properti navigation drawer
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
         mToggle = ActionBarDrawerToggle(this, drawerLayout, R.string.navbar_open, R.string.navbar_close)
         drawerLayout?.addDrawerListener(mToggle!!)
         mToggle?.syncState()
 
-        val img = listOf<String>(
-                "http://www.kelapapark.com/images/24210246_1619590538105124_628262070599682957_o.jpg",
-                "http://www.kelapapark.com/images/terusan-2.jpg",
-                "http://www.kelapapark.com/images/terusan-5-6.jpg",
-                "http://www.kelapapark.com/images/24210246_1619590538105124_628262070599682957_o.jpg",
-                "http://www.kelapapark.com/images/terusan-2.jpg",
-                "http://www.kelapapark.com/images/terusan-5-6.jpg"
-        )
+        val sliderRef = database.child("front_page_image_slider")
+        sliderRef.addValueEventListener(object: ValueEventListener{
+            override fun onCancelled(p0: DatabaseError?) {
+                Log.w(ERROR_READ_VALUE, "Failed to read value.", p0?.toException())
+            }
 
-        val pager = findViewById<ViewPager>(R.id.main_view_pager)
-        val adapter = MainSliderAdapter(img)
-        pager.adapter = adapter
+            override fun onDataChange(p0: DataSnapshot?) {
+                val image = ArrayList<String>()
 
-        val circle = findViewById<CirclePageIndicator>(R.id.main_circle_indicator)
-        circle.setViewPager(pager)
-        val density = resources.displayMetrics.density
-        circle.radius = 5 * density
+                for (snapshot in p0?.children!!) {
+                    val value = snapshot.value!!.toString()
 
-        // set swipe otomatis untuk image slider
-        autoSwipeSlider(img, pager)
+                    image.add(value)
+                }
+
+                // view pager untuk image slider
+                val adapter = MainSliderAdapter(image)
+                pager.adapter = adapter
+
+                // cicrle indikator
+                circle.setViewPager(pager)
+                circle.radius = 5 * density
+
+                // set swipe otomatis untuk image slider
+                autoSwipeSlider(image, pager)
+            }
+
+        })
 
         val viewPagerKategori = findViewById<ViewPager>(R.id.main_kategori_view_pager)
         val tabLayoutKategori = findViewById<TabLayout>(R.id.main_tab_layout)
 
+        // tambah tab text dan icon
         tabLayoutKategori.addTab(tabLayoutKategori.newTab().setText("WAHANA").setIcon(R.drawable.ic_jeep))
         tabLayoutKategori.addTab(tabLayoutKategori.newTab().setText("PAKET").setIcon(R.drawable.ic_tickets))
         tabLayoutKategori.addTab(tabLayoutKategori.newTab().setText("RESTO").setIcon(R.drawable.ic_serve))

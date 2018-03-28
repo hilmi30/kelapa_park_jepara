@@ -12,7 +12,7 @@ import java.util.zip.Inflater
 /**
  * Created by mrdoyon on 3/27/18.
  */
-class MainSliderAdapter(val imgData: List<String>): PagerAdapter(){
+class MainSliderAdapter(val imgData: ArrayList<String>): PagerAdapter(){
     override fun isViewFromObject(view: View?, `object`: Any?): Boolean {
         return view == `object` as RelativeLayout
     }
