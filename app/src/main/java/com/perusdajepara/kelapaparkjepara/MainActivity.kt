@@ -12,10 +12,7 @@ import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 import com.perusdajepara.kelapaparkjepara.mainfragments.*
 import com.viewpagerindicator.CirclePageIndicator
 import java.util.*
@@ -26,9 +23,7 @@ class MainActivity : AppCompatActivity(){
     val ERROR_READ_VALUE = "error_read_value"
 
     var mToggle: ActionBarDrawerToggle? = null
-    var database = FirebaseDatabase.getInstance().reference
-
-    var img: List<String>? = null
+    var mDataRef: DatabaseReference? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,9 +34,7 @@ class MainActivity : AppCompatActivity(){
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val pager = findViewById<ViewPager>(R.id.main_view_pager)
-        val circle = findViewById<CirclePageIndicator>(R.id.main_circle_indicator)
-        val density = resources.displayMetrics.density
+        mDataRef = FirebaseDatabase.getInstance().reference
 
         // properti navigation drawer
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
@@ -49,8 +42,12 @@ class MainActivity : AppCompatActivity(){
         drawerLayout?.addDrawerListener(mToggle!!)
         mToggle?.syncState()
 
-        val sliderRef = database.child("front_page_image_slider")
-        sliderRef.addValueEventListener(object: ValueEventListener{
+        val pager = findViewById<ViewPager>(R.id.main_view_pager)
+        val circle = findViewById<CirclePageIndicator>(R.id.main_circle_indicator)
+        val density = resources.displayMetrics.density
+
+        val sliderRef = mDataRef?.child("front_page_image_slider")
+        sliderRef?.addValueEventListener(object: ValueEventListener{
             override fun onCancelled(p0: DatabaseError?) {
                 Log.w(ERROR_READ_VALUE, "Failed to read value.", p0?.toException())
             }
@@ -59,7 +56,7 @@ class MainActivity : AppCompatActivity(){
                 val image = ArrayList<String>()
 
                 for (snapshot in p0?.children!!) {
-                    val value = snapshot.value!!.toString()
+                    val value = snapshot.value.toString()
 
                     image.add(value)
                 }

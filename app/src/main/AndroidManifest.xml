@@ -31,9 +31,9 @@
             android:name=".auth.AuthActivity"
             android:theme="@style/Transparent"
             android:windowSoftInputMode="stateHidden" />
-        <!--Post Testing-->
-        <activity android:name=".testing.PostToFirebaseActivity"
-            android:parentActivityName=".testing.PostToFirebaseActivity"/>
+        <!--Detail Activity-->
+        <activity android:name=".DetailWahanaActivity"
+            android:parentActivityName=".DetailWahanaActivity"/>
     </application>
 
 </manifest>
