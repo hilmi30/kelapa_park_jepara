@@ -18,7 +18,7 @@
             android:theme="@style/NoActionBar" />
         <!-- Splashscreen Activity -->
         <activity
-            android:name=".SplashscreenActivity"
+            android:name=".splashscreen.SplashscreenActivity"
             android:theme="@style/NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,8 +32,9 @@
             android:theme="@style/Transparent"
             android:windowSoftInputMode="stateHidden" />
         <!--Detail Activity-->
-        <activity android:name=".DetailWahanaActivity"
-            android:parentActivityName=".DetailWahanaActivity"/>
+        <activity android:name=".detailwahana.DetailWahanaActivity"
+            android:theme="@style/ActionBarTransparent"
+            android:parentActivityName=".detailwahana.DetailWahanaActivity"/>
     </application>
 
 </manifest>

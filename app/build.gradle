@@ -47,6 +47,9 @@ dependencies {
     implementation 'com.android.support:cardview-v7:26.1.0'
 
     implementation 'com.firebaseui:firebase-ui-database:2.3.0'
+
+//    justified text
+    compile 'com.uncopt:android.justified:1.0'
 }
 
 

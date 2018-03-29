@@ -1,4 +1,4 @@
-package com.perusdajepara.kelapaparkjepara
+package com.perusdajepara.kelapaparkjepara.detailwahana
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -11,6 +11,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import com.google.firebase.database.*
+import com.perusdajepara.kelapaparkjepara.MainActivity
+import com.perusdajepara.kelapaparkjepara.R
 import com.squareup.picasso.Picasso
 import com.viewpagerindicator.CirclePageIndicator
 
@@ -28,7 +30,7 @@ class DetailWahanaActivity : AppCompatActivity() {
 
         val wahana_id = intent.getStringExtra(WAHANA_ID)
         val wahana_name = intent.getStringExtra(WAHANA_NAME)
-        supportActionBar?.title = wahana_name
+        supportActionBar?.title = ""
 
         val circle = findViewById<CirclePageIndicator>(R.id.detail_circle_indicator)
         val viewPager = findViewById<ViewPager>(R.id.detail_view_pager)

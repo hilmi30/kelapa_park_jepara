@@ -1,9 +1,11 @@
-package com.perusdajepara.kelapaparkjepara
+package com.perusdajepara.kelapaparkjepara.splashscreen
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import com.perusdajepara.kelapaparkjepara.MainActivity
+import com.perusdajepara.kelapaparkjepara.R
 
 class SplashscreenActivity : AppCompatActivity() {
 
