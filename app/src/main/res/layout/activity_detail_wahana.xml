@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.perusdajepara.kelapaparkjepara.detailwahana.DetailWahanaActivity">
+    tools:context="com.perusdajepara.kelapaparkjepara.detail.DetailWahanaActivity">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/detail_nama_wahana"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/atv_trabas"
@@ -56,6 +56,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/detail_harga_wahana"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
@@ -68,22 +69,23 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:textColor="@color/colorAccent"
-                    android:id="@+id/textView"
+                    android:id="@+id/detail_ket_wahana"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/everyday"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/colorAccent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                    app:layout_constraintTop_toBottomOf="@+id/detail_nama_wahana" />
 
             </android.support.constraint.ConstraintLayout>
 
             <com.uncopt.android.widget.text.justify.JustifiedTextView
-                android:layout_marginTop="18dp"
+                android:id="@+id/detail_desc_wahana"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/loremtext"/>
+                android:layout_marginTop="18dp"
+                android:text="@string/loremtext" />
 
             <Button
                 android:textColor="@color/white"

@@ -50,6 +50,9 @@ dependencies {
 
 //    justified text
     compile 'com.uncopt:android.justified:1.0'
+
+//    textview money format
+    compile 'org.fabiomsr:moneytextview:1.1.0'
 }
 
 

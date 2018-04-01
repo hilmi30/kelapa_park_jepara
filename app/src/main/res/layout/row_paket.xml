@@ -30,13 +30,13 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/wahana_title"
+            android:id="@+id/paket_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
-            android:text="@string/atv_trabas"
+            android:text="@string/paket_tandem"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -45,13 +45,13 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:gravity="center"
-            android:id="@+id/wahana_harga"
+            android:id="@+id/paket_harga"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="24dp"
             android:layout_marginTop="8dp"
+            android:gravity="center"
             android:text="@string/_100k"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -16,7 +16,8 @@ import com.google.firebase.database.FirebaseDatabase
 import com.perusdajepara.kelapaparkjepara.R
 import com.squareup.picasso.Picasso
 import com.google.firebase.database.DatabaseReference
-import com.perusdajepara.kelapaparkjepara.detailwahana.DetailWahanaActivity
+import com.perusdajepara.kelapaparkjepara.detail.DetailWahanaActivity
+import com.perusdajepara.kelapaparkjepara.FirebaseModel
 
 /**
  * A simple [Fragment] subclass.
@@ -37,21 +38,20 @@ class WahanaFragment : Fragment() {
         wahanaRecy?.setHasFixedSize(true)
         wahanaRecy?.layoutManager = LinearLayoutManager(context)
 
-        val firebaseAdapter = object: FirebaseRecyclerAdapter<WahanaModel, WahanaViewHolder>(
-                WahanaModel::class.java,
+        val firebaseAdapter = object: FirebaseRecyclerAdapter<FirebaseModel, WahanaViewHolder>(
+                FirebaseModel::class.java,
                 R.layout.row_wahana,
                 WahanaViewHolder::class.java,
                 wahanaRef
         ){
-            override fun populateViewHolder(viewHolder: WahanaViewHolder?, model: WahanaModel?, position: Int) {
+            override fun populateViewHolder(viewHolder: WahanaViewHolder?, model: FirebaseModel?, position: Int) {
                 viewHolder?.setGambar(model?.gambar!!)
                 viewHolder?.setNama(model?.nama!!)
                 viewHolder?.setHarga(model?.harga!!)
                 viewHolder?.mView?.setOnClickListener {
                     val id = getRef(position).key
                     val intent = Intent(context, DetailWahanaActivity::class.java)
-                    intent.putExtra(DetailWahanaActivity().WAHANA_ID, id)
-                    intent.putExtra(DetailWahanaActivity().WAHANA_NAME, model?.nama)
+                    intent.putExtra(DetailWahanaActivity().ID_WAHANA, id)
                     startActivity(intent)
                 }
             }
@@ -70,7 +70,7 @@ class WahanaFragment : Fragment() {
         }
 
         fun setGambar(gambar: String){
-            val wahanaGambar = mView.findViewById<ImageView>(R.id.wahana_img)
+            val wahanaGambar = mView.findViewById<ImageView>(R.id.paket_img)
             Picasso.get().load(gambar).into(wahanaGambar)
         }
 

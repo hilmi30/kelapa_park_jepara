@@ -38,4 +38,8 @@
     <string name="rp_200_000">Rp. 200.000</string>
     <string name="_200k">200K</string>
     <string name="detal_harga_wahana">300K</string>
+    <string name="_100k">100K</string>
+    <string name="paket_tandem">Paket Tandem</string>
+    <string name="paket_skywalk">Paket Skywalk</string>
+    <string name="img_paket_item">img_paket_item</string>
 </resources>
