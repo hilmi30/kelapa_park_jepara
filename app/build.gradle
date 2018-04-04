@@ -23,7 +23,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
@@ -35,28 +35,22 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation 'com.android.support:design:26.1.0'
-
-//    circle indicator
+    //    circle indicator
     compile 'com.github.JakeWharton:ViewPagerIndicator:2.4.1'
-
-//    picasso
+    //    picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
-
-//    circle imageview
+    //    circle imageview
     compile 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'com.android.support:cardview-v7:26.1.0'
-
     implementation 'com.firebaseui:firebase-ui-database:2.3.0'
-
-//    justified text
+    //    justified text
     compile 'com.uncopt:android.justified:1.0'
-
-//    textview money format
+    //    textview money format
     compile 'org.fabiomsr:moneytextview:1.1.0'
+    //    textview money2
+    compile 'com.github.andyken:moneytextview:1.2'
+    implementation 'com.google.android.gms:play-services:11.0.4'
+    implementation 'com.google.android.gms:play-services-maps:11.0.4'
 }
-
-
-
-
 
 apply plugin: 'com.google.gms.google-services'

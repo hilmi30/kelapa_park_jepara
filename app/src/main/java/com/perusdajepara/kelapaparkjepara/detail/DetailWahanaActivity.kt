@@ -16,6 +16,7 @@ import com.perusdajepara.kelapaparkjepara.MainActivity
 import com.perusdajepara.kelapaparkjepara.R
 import com.squareup.picasso.Picasso
 import com.viewpagerindicator.CirclePageIndicator
+import org.fabiomsr.moneytextview.MoneyTextView
 
 class DetailWahanaActivity : AppCompatActivity(), ValueEventListener {
 
@@ -92,9 +93,15 @@ class DetailWahanaActivity : AppCompatActivity(), ValueEventListener {
             }
             HARGA -> {
                 val hargaWahana = findViewById<TextView>(R.id.detail_harga_wahana)
-                val hargaStr = p0.value.toString()
-                val result = hargaStr.substring(0, hargaStr.length - 3)
-                hargaWahana.text = "${result}K"
+                val valueStr = p0.value.toString()
+                val lengthStr = valueStr.length
+                if(valueStr.length >= 4){
+                    val result = "Rp" + valueStr.substring(0, lengthStr - 3) + "." + valueStr.substring(lengthStr - 3, lengthStr)
+                    hargaWahana?.text = result
+                } else {
+                    val result = "Rp"+valueStr
+                    hargaWahana?.text = result
+                }
             }
             KET -> {
                 val ketWahana = findViewById<TextView>(R.id.detail_ket_wahana)

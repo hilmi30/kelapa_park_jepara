@@ -18,6 +18,9 @@ import com.squareup.picasso.Picasso
 import com.google.firebase.database.DatabaseReference
 import com.perusdajepara.kelapaparkjepara.detail.DetailWahanaActivity
 import com.perusdajepara.kelapaparkjepara.FirebaseModel
+import org.fabiomsr.moneytextview.MoneyTextView
+import java.text.NumberFormat
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.
@@ -70,15 +73,20 @@ class WahanaFragment : Fragment() {
         }
 
         fun setGambar(gambar: String){
-            val wahanaGambar = mView.findViewById<ImageView>(R.id.paket_img)
+            val wahanaGambar = mView.findViewById<ImageView>(R.id.wahana_img)
             Picasso.get().load(gambar).into(wahanaGambar)
         }
 
         fun setHarga(harga: Int){
             val wahanaHarga = mView.findViewById<TextView>(R.id.wahana_harga)
             val hargaStr = harga.toString()
-            val result = hargaStr.substring(0, hargaStr.length - 3)
-            wahanaHarga?.text = "${result}K"
+            if(hargaStr.length >= 4){
+                val result = "Rp" + hargaStr.substring(0, hargaStr.length - 3) + "." + hargaStr.substring(hargaStr.length - 3, hargaStr.length)
+                wahanaHarga?.text = result
+            } else {
+                val result = "Rp"+harga
+                wahanaHarga?.text = result
+            }
         }
     }
 }

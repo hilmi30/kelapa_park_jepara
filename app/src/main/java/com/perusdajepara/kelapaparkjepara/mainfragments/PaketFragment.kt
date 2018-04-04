@@ -6,12 +6,10 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.google.firebase.database.DatabaseReference
@@ -21,6 +19,8 @@ import com.perusdajepara.kelapaparkjepara.FirebaseModel
 import com.perusdajepara.kelapaparkjepara.R
 import com.perusdajepara.kelapaparkjepara.detail.DetailPaketActivity
 import com.squareup.picasso.Picasso
+import de.hdodenhof.circleimageview.CircleImageView
+import org.fabiomsr.moneytextview.MoneyTextView
 
 
 /**
@@ -57,6 +57,7 @@ class PaketFragment : Fragment() {
                     val intent = Intent(context, DetailPaketActivity::class.java)
                     val id = getRef(position).key
                     intent.putExtra(DetailPaketActivity().ID_PAKET, id)
+                    intent.putExtra(DetailPaketActivity().NAMA_PAKET, model?.nama)
                     startActivity(intent)
                 }
             }
@@ -81,8 +82,13 @@ class PaketFragment : Fragment() {
         fun setHarga(harga: Int){
             val hargaPaket = view.findViewById<TextView>(R.id.paket_harga)
             val hargaStr = harga.toString()
-            val result = hargaStr.substring(0, hargaStr.length - 3)
-            hargaPaket.text = "${result}K"
+            if(hargaStr.length >= 4){
+                val result = "Rp" + hargaStr.substring(0, hargaStr.length - 3) + "." + hargaStr.substring(hargaStr.length - 3, hargaStr.length)
+                hargaPaket?.text = result
+            } else {
+                val result = "Rp"+harga
+                hargaPaket?.text = result
+            }
         }
     }
 

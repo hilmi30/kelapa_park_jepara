@@ -1,15 +1,21 @@
 package com.perusdajepara.kelapaparkjepara
 
 import android.app.FragmentManager
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.support.design.widget.AppBarLayout
+import android.support.design.widget.NavigationView
 import android.support.design.widget.TabLayout
+import android.support.v4.view.GravityCompat
 import android.support.v4.view.ViewPager
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.Toolbar
 import android.util.Log
+import android.view.Gravity
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.google.firebase.database.*
@@ -18,29 +24,36 @@ import com.viewpagerindicator.CirclePageIndicator
 import java.util.*
 import kotlin.collections.ArrayList
 
-class MainActivity : AppCompatActivity(){
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
 
     val ERROR_READ_VALUE = "error_read_value"
 
     var mToggle: ActionBarDrawerToggle? = null
     var mDataRef: DatabaseReference? = null
+    var drawerLayout: DrawerLayout? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val mainAppbar = findViewById<AppBarLayout>(R.id.main_appbar)
+
         // set toolbar
         val toolbar = findViewById<Toolbar>(R.id.nav_toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = ""
 
         mDataRef = FirebaseDatabase.getInstance().reference
 
         // properti navigation drawer
-        val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
+        drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
         mToggle = ActionBarDrawerToggle(this, drawerLayout, R.string.navbar_open, R.string.navbar_close)
         drawerLayout?.addDrawerListener(mToggle!!)
         mToggle?.syncState()
+
+        val navView = findViewById<NavigationView>(R.id.nav_view)
+        navView.setNavigationItemSelectedListener(this)
 
         val pager = findViewById<ViewPager>(R.id.main_view_pager)
         val circle = findViewById<CirclePageIndicator>(R.id.main_circle_indicator)
@@ -141,5 +154,25 @@ class MainActivity : AppCompatActivity(){
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.nav_peta -> {
+                val intent = Intent(this, MapActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
+        drawerLayout!!.closeDrawer(GravityCompat.START)
+        return true
+    }
+
+    override fun onBackPressed() {
+        if(drawerLayout!!.isDrawerOpen(GravityCompat.START)){
+            drawerLayout!!.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
+        }
     }
 }

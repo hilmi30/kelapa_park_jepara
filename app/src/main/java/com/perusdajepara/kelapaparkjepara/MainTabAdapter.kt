@@ -9,7 +9,7 @@ import android.support.v4.app.FragmentPagerAdapter
  */
 class MainTabAdapter(fm: FragmentManager): FragmentPagerAdapter(fm){
 
-    var fragmentItem: ArrayList<Fragment> = ArrayList()
+    val fragmentItem: ArrayList<Fragment> = ArrayList()
 
     fun addFragment(fragment: Fragment){
         fragmentItem.add(fragment)

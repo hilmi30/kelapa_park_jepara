@@ -15,7 +15,7 @@
         android:layout_height="match_parent">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/paket_img"
+            android:id="@+id/minuman_img"
             android:layout_width="@dimen/circle_img_width"
             android:layout_height="@dimen/circle_img_height"
             android:layout_marginBottom="8dp"
@@ -27,22 +27,22 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/paket_title"
+            android:id="@+id/minuman_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:text="@string/paket_tandem"
+            android:text="@string/ice_cream"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/paket_img"
+            app:layout_constraintStart_toEndOf="@+id/minuman_img"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/paket_harga"
+            android:id="@+id/minuman_harga"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
