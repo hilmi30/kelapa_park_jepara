@@ -96,6 +96,7 @@
             android:text="@string/loremtext"/>
 
         <Button
+            android:id="@+id/reservasi_paket"
             android:textColor="@color/white"
             android:layout_margin="16dp"
             android:background="@drawable/button_common_style_accent"

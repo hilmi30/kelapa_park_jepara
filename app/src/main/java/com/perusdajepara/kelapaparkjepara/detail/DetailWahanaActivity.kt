@@ -1,5 +1,6 @@
 package com.perusdajepara.kelapaparkjepara.detail
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.view.PagerAdapter
@@ -8,12 +9,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import android.widget.TextView
+import android.widget.*
 import com.google.firebase.database.*
 import com.perusdajepara.kelapaparkjepara.MainActivity
 import com.perusdajepara.kelapaparkjepara.R
+import com.perusdajepara.kelapaparkjepara.reservasi.ReservasiActivity
 import com.squareup.picasso.Picasso
 import com.viewpagerindicator.CirclePageIndicator
 import org.fabiomsr.moneytextview.MoneyTextView
@@ -27,13 +27,14 @@ class DetailWahanaActivity : AppCompatActivity(), ValueEventListener {
     val KET = "keterangan"
 
     var mWahanaRef: DatabaseReference? = null
+    var wahana_id: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_wahana)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val wahana_id = intent.getStringExtra(ID_WAHANA)
+        wahana_id = intent.getStringExtra(ID_WAHANA)
         supportActionBar?.title = ""
 
         val circle = findViewById<CirclePageIndicator>(R.id.detail_circle_indicator)
@@ -75,6 +76,14 @@ class DetailWahanaActivity : AppCompatActivity(), ValueEventListener {
                 circle.radius = 5 * density
             }
         })
+
+        val wahanaReservasi = findViewById<Button>(R.id.reservasi_wahana_btn)
+        wahanaReservasi.setOnClickListener {
+            val intent = Intent(this, ReservasiActivity::class.java)
+            intent.putExtra(ReservasiActivity().ID, wahana_id)
+            intent.putExtra(ReservasiActivity().KEY, "wahana")
+            startActivity(intent)
+        }
     }
 
     override fun onCancelled(p0: DatabaseError?) {

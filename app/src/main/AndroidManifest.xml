@@ -12,7 +12,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
@@ -46,9 +45,18 @@
             android:name=".detail.DetailPaketActivity"
             android:parentActivityName=".detail.DetailPaketActivity"
             android:theme="@style/ActionBarTransparentLight" />
-        <!--Map Activity-->
-        <activity android:name=".MapActivity"
-            android:parentActivityName=".MapActivity"/>
+        <!-- Map Activity -->
+        <activity
+            android:name=".map.MapActivity"
+            android:parentActivityName=".map.MapActivity" />
+        <!-- Tentang Activity -->
+        <activity
+            android:name=".tentang.TentangActivity"
+            android:parentActivityName=".tentang.TentangActivity" />
+        <!--Reservasi Activity-->
+        <activity android:name=".reservasi.ReservasiActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:parentActivityName=".reservasi.ReservasiActivity"/>
     </application>
 
 </manifest>

@@ -1,7 +1,10 @@
 package com.perusdajepara.kelapaparkjepara
 
-import android.app.FragmentManager
+import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Typeface
+import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -14,15 +17,18 @@ import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.Toolbar
 import android.util.Log
-import android.view.Gravity
-import android.view.Menu
 import android.view.MenuItem
-import android.view.View
+import android.widget.TextView
+import android.widget.Toast
 import com.google.firebase.database.*
 import com.perusdajepara.kelapaparkjepara.mainfragments.*
+import com.perusdajepara.kelapaparkjepara.map.MapActivity
+import com.perusdajepara.kelapaparkjepara.tentang.TentangActivity
 import com.viewpagerindicator.CirclePageIndicator
 import java.util.*
 import kotlin.collections.ArrayList
+
+
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
 
@@ -36,18 +42,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val mainAppbar = findViewById<AppBarLayout>(R.id.main_appbar)
-
         // set toolbar
         val toolbar = findViewById<Toolbar>(R.id.nav_toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = ""
 
+        val type = Typeface.createFromAsset(assets, "paradise.ttf")
+        val titleText = findViewById<TextView>(R.id.title_toolbar)
+        titleText.setTypeface(type)
+
         mDataRef = FirebaseDatabase.getInstance().reference
 
         // properti navigation drawer
-        drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
+        drawerLayout = findViewById(R.id.drawer_layout)
         mToggle = ActionBarDrawerToggle(this, drawerLayout, R.string.navbar_open, R.string.navbar_close)
         drawerLayout?.addDrawerListener(mToggle!!)
         mToggle?.syncState()
@@ -96,7 +104,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         tabLayoutKategori.addTab(tabLayoutKategori.newTab().setText("PAKET").setIcon(R.drawable.ic_tickets))
         tabLayoutKategori.addTab(tabLayoutKategori.newTab().setText("RESTO").setIcon(R.drawable.ic_serve))
         tabLayoutKategori.addTab(tabLayoutKategori.newTab().setText("PROMO").setIcon(R.drawable.ic_promotions))
-        tabLayoutKategori.addTab(tabLayoutKategori.newTab().setText("RESERVASI").setIcon(R.drawable.ic_booking))
+//        tabLayoutKategori.addTab(tabLayoutKategori.newTab().setText("RESERVASI").setIcon(R.drawable.ic_booking))
 
         val tabAdapter = MainTabAdapter(supportFragmentManager)
         tabAdapter.addFragment(WahanaFragment())
@@ -160,6 +168,51 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when(item.itemId){
             R.id.nav_peta -> {
                 val intent = Intent(this, MapActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.nav_tentang -> {
+                val intent = Intent(this, TentangActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.nav_website -> {
+                try {
+                    val url = "http://www.kelapapark.com/"
+                    val intent = Intent(Intent.ACTION_VIEW)
+                    val uri = Uri.parse(url)
+                    intent.setData(uri)
+                    startActivity(intent)
+                } catch (e: ActivityNotFoundException){
+                    Toast.makeText(this, "Browser not found.", Toast.LENGTH_SHORT).show()
+                }
+            }
+            R.id.nav_fb -> {
+                try {
+                    val url = "https://www.facebook.com/kelapapark/"
+                    val intent = Intent(Intent.ACTION_VIEW)
+                    val uri = Uri.parse(url)
+                    intent.setData(uri)
+                    startActivity(intent)
+                } catch (e: ActivityNotFoundException){
+                    Toast.makeText(this, "Facebook not found.", Toast.LENGTH_SHORT).show()
+                }
+
+            }
+            R.id.nav_instagram -> {
+                val intent = Intent(Intent.ACTION_VIEW)
+                var url = "https://www.instagram.com/kelapapark/"
+                try {
+                    if(this.packageManager.getPackageInfo("com.instagram.android", 0) != null){
+                        if(url.endsWith("/")){
+                            url = url.substring(0, url.length - 1)
+                        }
+                        val username = url.substring(url.lastIndexOf("/") + 1)
+                        intent.setData(Uri.parse("http://instagram.com/_u/" + username))
+                        intent.setPackage("com.instagram.android")
+                        startActivity(intent)
+                    }
+                } catch (e: PackageManager.NameNotFoundException) {
+                }
+                intent.setData(Uri.parse(url))
                 startActivity(intent)
             }
         }

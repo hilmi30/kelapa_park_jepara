@@ -21,7 +21,7 @@
 
         <EditText
             android:text=""
-            android:inputType="textEmailAddress"
+            android:inputType="text"
             android:textSize="16sp"
             android:drawableStart="@mipmap/ic_account_circle_white_24dp"
             android:drawablePadding="20dp"
@@ -40,23 +40,6 @@
             android:text=""
             android:inputType="textEmailAddress"
             android:textSize="16sp"
-            android:drawableStart="@mipmap/ic_account_box_white_24dp"
-            android:drawablePadding="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/edit_text_style"
-            android:padding="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/username"
-            android:textColor="@color/white"
-            android:textColorHint="@color/whiteTransparent"/>
-
-        <EditText
-            android:text=""
-            android:inputType="textEmailAddress"
-            android:textSize="16sp"
             android:drawableStart="@mipmap/ic_email_white_24dp"
             android:drawablePadding="20dp"
             android:layout_marginLeft="20dp"
@@ -67,6 +50,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/email"
+            android:textColor="@color/white"
+            android:textColorHint="@color/whiteTransparent"/>
+
+        <EditText
+            android:text=""
+            android:inputType="number"
+            android:textSize="16sp"
+            android:drawableStart="@drawable/ic_phone_black_24dp"
+            android:drawablePadding="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edit_text_style"
+            android:padding="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/no_telepon"
             android:textColor="@color/white"
             android:textColorHint="@color/whiteTransparent"/>
 

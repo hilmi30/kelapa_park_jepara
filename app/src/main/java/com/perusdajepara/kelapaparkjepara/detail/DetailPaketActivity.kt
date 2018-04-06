@@ -1,5 +1,6 @@
 package com.perusdajepara.kelapaparkjepara.detail
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.view.PagerAdapter
@@ -10,6 +11,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -19,6 +21,7 @@ import com.perusdajepara.kelapaparkjepara.FirebaseModel
 import com.perusdajepara.kelapaparkjepara.MainActivity
 import com.perusdajepara.kelapaparkjepara.MainSliderAdapter
 import com.perusdajepara.kelapaparkjepara.R
+import com.perusdajepara.kelapaparkjepara.reservasi.ReservasiActivity
 import com.squareup.picasso.Picasso
 import com.viewpagerindicator.CirclePageIndicator
 import org.fabiomsr.moneytextview.MoneyTextView
@@ -38,12 +41,19 @@ class DetailPaketActivity : AppCompatActivity(), ValueEventListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_paket)
         val paket_id = intent.getStringExtra(ID_PAKET)
-        val paket_nama = intent.getStringExtra(NAMA_PAKET)
         supportActionBar?.title = ""
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val mDataRef = FirebaseDatabase.getInstance().reference
         val mPaketTerusan = mDataRef.child("paket_terusan").child(paket_id)
+
+        val reservasiPaket = findViewById<Button>(R.id.reservasi_paket)
+        reservasiPaket.setOnClickListener {
+            val intent = Intent(this, ReservasiActivity::class.java)
+            intent.putExtra(ReservasiActivity().ID, paket_id)
+            intent.putExtra(ReservasiActivity().KEY, "paket_terusan")
+            startActivity(intent)
+        }
 
         val pager = findViewById<ViewPager>(R.id.detail_paket_pager)
         val circle = findViewById<CirclePageIndicator>(R.id.detail_paket_circle_indicator)
@@ -112,7 +122,7 @@ class DetailPaketActivity : AppCompatActivity(), ValueEventListener {
                     val result = "Rp" + valueStr.substring(0, lengthStr - 3) + "." + valueStr.substring(lengthStr - 3, lengthStr)
                     hargaPaket?.text = result
                 } else {
-                    val result = "Rp"+valueStr
+                    val result = "Rp" + valueStr
                     hargaPaket?.text = result
                 }
             }

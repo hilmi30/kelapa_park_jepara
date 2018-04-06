@@ -91,6 +91,7 @@
 
             <Button
                 android:textColor="@color/white"
+                android:id="@+id/reservasi_wahana_btn"
                 android:background="@drawable/button_common_style_accent"
                 android:layout_marginTop="18dp"
                 android:textAllCaps="false"

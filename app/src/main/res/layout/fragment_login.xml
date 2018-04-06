@@ -75,56 +75,56 @@
             android:layout_marginTop="20dp"
             android:drawablePadding="20dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/atau"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:drawableEnd="@mipmap/line"
-            android:drawableStart="@mipmap/line"
-            android:drawablePadding="20dp"/>
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/atau"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:textSize="16sp"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--android:drawableEnd="@mipmap/line"-->
+            <!--android:drawableStart="@mipmap/line"-->
+            <!--android:drawablePadding="20dp"/>-->
 
-        <LinearLayout
-            android:layout_margin="20dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <!--<LinearLayout-->
+            <!--android:layout_margin="20dp"-->
+            <!--android:gravity="center"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
 
-            <Button
-                android:layout_marginEnd="5dp"
-                style="?android:attr/buttonBarButtonStyle"
-                android:textAllCaps="false"
-                android:paddingStart="10dp"
-                android:paddingEnd="0dp"
-                android:drawableStart="@mipmap/logo_fb_white"
-                android:background="@drawable/button_fb_style"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/masuk_dengan_facebook"
-                android:layout_weight="1"/>
+            <!--<Button-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--style="?android:attr/buttonBarButtonStyle"-->
+                <!--android:textAllCaps="false"-->
+                <!--android:paddingStart="10dp"-->
+                <!--android:paddingEnd="0dp"-->
+                <!--android:drawableStart="@mipmap/logo_fb_white"-->
+                <!--android:background="@drawable/button_fb_style"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:textSize="16sp"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="@string/masuk_dengan_facebook"-->
+                <!--android:layout_weight="1"/>-->
 
-            <Button
-                android:layout_weight="1"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_marginStart="5dp"
-                android:textAllCaps="false"
-                android:drawableStart="@mipmap/google_logo"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:background="@drawable/button_google_style"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/masuk_dengan_google" />
+            <!--<Button-->
+                <!--android:layout_weight="1"-->
+                <!--style="?android:attr/buttonBarButtonStyle"-->
+                <!--android:layout_marginStart="5dp"-->
+                <!--android:textAllCaps="false"-->
+                <!--android:drawableStart="@mipmap/google_logo"-->
+                <!--android:paddingStart="10dp"-->
+                <!--android:paddingEnd="10dp"-->
+                <!--android:background="@drawable/button_google_style"-->
+                <!--android:textColor="@color/black"-->
+                <!--android:textSize="16sp"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="@string/masuk_dengan_google" />-->
 
-        </LinearLayout>
+        <!--</LinearLayout>-->
 
         <TextView
             android:id="@+id/login_go_to_signup"

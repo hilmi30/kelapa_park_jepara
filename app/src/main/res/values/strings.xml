@@ -48,4 +48,13 @@
     <string name="wahana_img">wahana_img</string>
     <string name="hari_ini_diskon_50">Hari ini diskon 50%</string>
     <string name="kelapa_park_jepara">Kelapa Park Jepara</string>
+    <string name="no_telepon">No Telepon</string>
+    <string name="kami_akan_mengirimkan_email_verifikasi_untuk_reset_password_anda">Kami akan mengirimkan email verifikasi untuk reset password anda</string>
+    <string name="nama">Nama</string>
+    <string name="nomor_telepon">Nomor Telepon</string>
+    <string name="pesan_sekarang">Pesan Sekarang</string>
+    <string name="hari_tanggal">Hari/Tanggal</string>
+    <string name="tanggal">Tanggal</string>
+    <string name="waktu">Waktu</string>
+    <string name="pilih_wahana">Pilih Wahana</string>
 </resources>

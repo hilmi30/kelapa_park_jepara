@@ -49,8 +49,9 @@ dependencies {
     compile 'org.fabiomsr:moneytextview:1.1.0'
     //    textview money2
     compile 'com.github.andyken:moneytextview:1.2'
-    implementation 'com.google.android.gms:play-services:11.0.4'
     implementation 'com.google.android.gms:play-services-maps:11.0.4'
+    compile 'de.cketti.mailto:email-intent-builder:1.0.0'
+    compile 'org.jetbrains.anko:anko-common:0.9'
 }
 
 apply plugin: 'com.google.gms.google-services'
