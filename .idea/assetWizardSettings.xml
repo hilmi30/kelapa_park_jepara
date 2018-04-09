@@ -28,9 +28,10 @@
                         </option>
                         <option name="values">
                           <map>
+                            <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="ffffff" />
-                            <entry key="outputName" value="ic_phone_black_24dp" />
-                            <entry key="sourceFile" value="C:\Users\ASUS\Downloads\indonesian-rupiah2.svg" />
+                            <entry key="outputName" value="ic_youtube" />
+                            <entry key="sourceFile" value="C:\Users\ASUS\Downloads\icons8-youtube.svg" />
                           </map>
                         </option>
                       </PersistentState>

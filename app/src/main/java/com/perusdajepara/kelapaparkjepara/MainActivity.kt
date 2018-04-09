@@ -177,9 +177,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_website -> {
                 try {
                     val url = "http://www.kelapapark.com/"
-                    val intent = Intent(Intent.ACTION_VIEW)
-                    val uri = Uri.parse(url)
-                    intent.setData(uri)
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                     startActivity(intent)
                 } catch (e: ActivityNotFoundException){
                     Toast.makeText(this, "Browser not found.", Toast.LENGTH_SHORT).show()
@@ -188,32 +186,29 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_fb -> {
                 try {
                     val url = "https://www.facebook.com/kelapapark/"
-                    val intent = Intent(Intent.ACTION_VIEW)
-                    val uri = Uri.parse(url)
-                    intent.setData(uri)
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                     startActivity(intent)
                 } catch (e: ActivityNotFoundException){
-                    Toast.makeText(this, "Facebook not found.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "facebook not found.", Toast.LENGTH_SHORT).show()
                 }
-
             }
             R.id.nav_instagram -> {
-                val intent = Intent(Intent.ACTION_VIEW)
-                var url = "https://www.instagram.com/kelapapark/"
                 try {
-                    if(this.packageManager.getPackageInfo("com.instagram.android", 0) != null){
-                        if(url.endsWith("/")){
-                            url = url.substring(0, url.length - 1)
-                        }
-                        val username = url.substring(url.lastIndexOf("/") + 1)
-                        intent.setData(Uri.parse("http://instagram.com/_u/" + username))
-                        intent.setPackage("com.instagram.android")
-                        startActivity(intent)
-                    }
-                } catch (e: PackageManager.NameNotFoundException) {
+                    val url = "https://www.instagram.com/kelapapark/?hl=id"
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                    startActivity(intent)
+                } catch (e: ActivityNotFoundException){
+                    Toast.makeText(this, "instagram not found.", Toast.LENGTH_SHORT).show()
                 }
-                intent.setData(Uri.parse(url))
-                startActivity(intent)
+            }
+            R.id.nav_youtube -> {
+                try {
+                    val url = "https://www.youtube.com/channel/UCTmZb4hyppphoH_MnNh8YLw"
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                    startActivity(intent)
+                } catch (e: ActivityNotFoundException){
+                    Toast.makeText(this, "youtube not found.", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 

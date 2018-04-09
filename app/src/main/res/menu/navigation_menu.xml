@@ -25,6 +25,10 @@
             <item android:id="@+id/nav_instagram"
                 android:icon="@drawable/ic_instagram"
                 android:title="@string/instagram"/>
+
+            <item android:id="@+id/nav_youtube"
+                android:icon="@drawable/ic_youtube"
+                android:title="@string/youtube"/>
         </menu>
     </item>
 

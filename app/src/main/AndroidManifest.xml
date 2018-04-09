@@ -18,10 +18,12 @@
 
         <!-- Main Activity -->
         <activity
+            android:screenOrientation="portrait"
             android:name=".MainActivity"
             android:theme="@style/NoActionBar" />
         <!-- Splashscreen Activity -->
         <activity
+            android:screenOrientation="portrait"
             android:name=".splashscreen.SplashscreenActivity"
             android:theme="@style/NoActionBar">
             <intent-filter>
@@ -32,21 +34,25 @@
         </activity>
         <!-- Auth Activity -->
         <activity
+            android:screenOrientation="portrait"
             android:name=".auth.AuthActivity"
             android:theme="@style/Transparent"
             android:windowSoftInputMode="stateHidden" />
         <!-- Detail Wahana Activity -->
         <activity
+            android:screenOrientation="portrait"
             android:name=".detail.DetailWahanaActivity"
             android:parentActivityName=".detail.DetailWahanaActivity"
             android:theme="@style/ActionBarTransparent" />
         <!-- Detail Paket Activity -->
         <activity
+            android:screenOrientation="portrait"
             android:name=".detail.DetailPaketActivity"
             android:parentActivityName=".detail.DetailPaketActivity"
             android:theme="@style/ActionBarTransparentLight" />
         <!-- Map Activity -->
         <activity
+            android:screenOrientation="portrait"
             android:name=".map.MapActivity"
             android:parentActivityName=".map.MapActivity" />
         <!-- Tentang Activity -->
@@ -54,7 +60,9 @@
             android:name=".tentang.TentangActivity"
             android:parentActivityName=".tentang.TentangActivity" />
         <!--Reservasi Activity-->
-        <activity android:name=".reservasi.ReservasiActivity"
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".reservasi.ReservasiActivity"
             android:windowSoftInputMode="stateHidden"
             android:parentActivityName=".reservasi.ReservasiActivity"/>
     </application>

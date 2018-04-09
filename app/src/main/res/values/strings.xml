@@ -54,7 +54,9 @@
     <string name="nomor_telepon">Nomor Telepon</string>
     <string name="pesan_sekarang">Pesan Sekarang</string>
     <string name="hari_tanggal">Hari/Tanggal</string>
-    <string name="tanggal">Tanggal</string>
+    <string name="tanggal">Pilih</string>
     <string name="waktu">Waktu</string>
     <string name="pilih_wahana">Pilih Wahana</string>
+    <string name="klik_marker">Klik marker lalu klik tombol kanan bawah untuk melihat arah menuju lokasi</string>
+    <string name="youtube">YouTube</string>
 </resources>
