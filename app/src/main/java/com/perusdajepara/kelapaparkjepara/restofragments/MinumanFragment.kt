@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -59,7 +60,7 @@ class MinumanFragment : Fragment() {
     class MinumanViewHolder(var view: View): RecyclerView.ViewHolder(view){
         fun setGambar(gambar: String){
             val minumanGambar = view.findViewById<ImageView>(R.id.minuman_img)
-            Picasso.get().load(gambar).into(minumanGambar)
+            Glide.with(view.context).load(gambar).into(minumanGambar)
         }
 
         fun setNama(nama: String){

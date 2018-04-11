@@ -56,14 +56,14 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </android.support.constraint.ConstraintLayout>
 
-        <TextView
-            android:layout_marginEnd="24dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginBottom="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/flying_fox_burma_bridge"/>
+        <!--<TextView-->
+            <!--android:layout_marginEnd="24dp"-->
+            <!--android:layout_marginTop="8dp"-->
+            <!--android:layout_marginStart="24dp"-->
+            <!--android:layout_marginBottom="8dp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/flying_fox_burma_bridge"/>-->
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -72,7 +72,7 @@
             <android.support.v4.view.ViewPager
                 android:id="@+id/detail_paket_pager"
                 android:layout_width="match_parent"
-                android:layout_height="180dp">
+                android:layout_height="200dp">
 
             </android.support.v4.view.ViewPager>
 
@@ -88,7 +88,8 @@
                 app:centered="false"/>
         </FrameLayout>
 
-        <TextView
+        <com.uncopt.android.widget.text.justify.JustifiedTextView
+            android:lineSpacingExtra="8dp"
             android:id="@+id/detail_paket_desc"
             android:layout_margin="24dp"
             android:layout_width="match_parent"

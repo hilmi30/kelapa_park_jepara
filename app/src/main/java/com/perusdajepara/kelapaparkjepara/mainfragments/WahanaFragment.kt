@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.google.firebase.database.FirebaseDatabase
 import com.perusdajepara.kelapaparkjepara.R
@@ -18,9 +19,7 @@ import com.squareup.picasso.Picasso
 import com.google.firebase.database.DatabaseReference
 import com.perusdajepara.kelapaparkjepara.detail.DetailWahanaActivity
 import com.perusdajepara.kelapaparkjepara.FirebaseModel
-import org.fabiomsr.moneytextview.MoneyTextView
-import java.text.NumberFormat
-import java.util.*
+
 
 /**
  * A simple [Fragment] subclass.
@@ -74,7 +73,7 @@ class WahanaFragment : Fragment() {
 
         fun setGambar(gambar: String){
             val wahanaGambar = mView.findViewById<ImageView>(R.id.wahana_img)
-            Picasso.get().load(gambar).into(wahanaGambar)
+            Glide.with(mView.context).load(gambar).into(wahanaGambar)
         }
 
         fun setHarga(harga: Int){

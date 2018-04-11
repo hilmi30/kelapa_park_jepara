@@ -83,6 +83,7 @@
             </android.support.constraint.ConstraintLayout>
 
             <com.uncopt.android.widget.text.justify.JustifiedTextView
+                android:lineSpacingExtra="8dp"
                 android:id="@+id/detail_desc_wahana"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

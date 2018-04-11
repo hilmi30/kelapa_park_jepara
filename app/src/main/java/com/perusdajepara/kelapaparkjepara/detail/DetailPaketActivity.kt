@@ -15,6 +15,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.google.firebase.database.*
 import com.perusdajepara.kelapaparkjepara.FirebaseModel
@@ -23,6 +24,7 @@ import com.perusdajepara.kelapaparkjepara.MainSliderAdapter
 import com.perusdajepara.kelapaparkjepara.R
 import com.perusdajepara.kelapaparkjepara.reservasi.ReservasiActivity
 import com.squareup.picasso.Picasso
+import com.uncopt.android.widget.text.justify.JustifiedTextView
 import com.viewpagerindicator.CirclePageIndicator
 import org.fabiomsr.moneytextview.MoneyTextView
 import java.text.NumberFormat
@@ -111,7 +113,7 @@ class DetailPaketActivity : AppCompatActivity(), ValueEventListener {
                 ketPaket.text = p0.value.toString()
             }
             DESKRIPSI -> {
-                val descPaket = findViewById<TextView>(R.id.detail_paket_desc)
+                val descPaket = findViewById<JustifiedTextView>(R.id.detail_paket_desc)
                 descPaket.text = p0.value.toString()
             }
             HARGA -> {
@@ -141,7 +143,7 @@ class DetailPaketActivity : AppCompatActivity(), ValueEventListener {
         override fun instantiateItem(container: ViewGroup?, position: Int): Any {
             val v = LayoutInflater.from(container?.context).inflate(R.layout.row_detail_paket_item, container, false)
             val img = v.findViewById<ImageView>(R.id.detail_item_paket_img)
-            Picasso.get().load(imgData[position]).into(img)
+            Glide.with(container?.context).load(imgData[position]).into(img)
 
             container?.addView(v)
             return v

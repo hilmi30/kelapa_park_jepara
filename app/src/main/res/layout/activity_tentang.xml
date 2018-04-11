@@ -1,9 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".tentang.TentangActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:padding="24dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="24dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_marginEnd="16dp"
+                android:id="@+id/imageView3"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@mipmap/logo_kelapa_park2"
+                android:contentDescription="@string/tentang" />
+
+            <ImageView
+                android:layout_marginStart="16dp"
+                android:id="@+id/imageView4"
+                android:layout_width="150dp"
+                android:layout_height="100dp"
+                android:src="@drawable/perusda2"
+                android:contentDescription="@string/tentang" />
+
+        </LinearLayout>
+
+        <com.uncopt.android.widget.text.justify.JustifiedTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tentang_kelapa"
+            android:lineSpacingExtra="8dp"
+            android:layout_marginBottom="24dp"/>
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/kontak_info" />
+
+        <TextView
+            android:id="@+id/phone1"
+            android:layout_marginBottom="8dp"
+            android:drawableStart="@drawable/ic_local_phone_black_24dp"
+            android:drawablePadding="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/_081336687778"/>
+
+        <TextView
+            android:layout_marginBottom="24dp"
+            android:id="@+id/phone2"
+            android:drawableStart="@drawable/ic_local_phone_black_24dp"
+            android:drawablePadding="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/_085877339666"/>
+
+        <TextView
+            android:id="@+id/copyright"
+            android:text="@string/copyright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</ScrollView>

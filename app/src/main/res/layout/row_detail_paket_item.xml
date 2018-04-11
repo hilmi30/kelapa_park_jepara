@@ -9,9 +9,9 @@
     <ImageView
         android:id="@+id/detail_item_paket_img"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="match_parent"
         android:src="@drawable/ic_launcher_background"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         android:contentDescription="@string/img_paket_item" />
 
 </RelativeLayout>

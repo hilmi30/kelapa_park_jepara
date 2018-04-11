@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
+import com.bumptech.glide.Glide
 import com.google.firebase.database.*
 import com.perusdajepara.kelapaparkjepara.DatePickerFragment
 import com.perusdajepara.kelapaparkjepara.MainActivity
@@ -181,7 +182,7 @@ class ReservasiActivity : AppCompatActivity(), ValueEventListener, DatePickerDia
             GAMBAR -> {
                 val gambarWahana = findViewById<CircleImageView>(R.id.reservasi_circle_img)
                 val gambar = p0.value.toString()
-                Picasso.get().load(gambar).into(gambarWahana)
+                Glide.with(this).load(gambar).into(gambarWahana)
             }
             HARGA -> {
                 val hargaWahana = findViewById<TextView>(R.id.reservasi_harga)

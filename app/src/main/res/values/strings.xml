@@ -59,4 +59,16 @@
     <string name="pilih_wahana">Pilih Wahana</string>
     <string name="klik_marker">Klik marker lalu klik tombol kanan bawah untuk melihat arah menuju lokasi</string>
     <string name="youtube">YouTube</string>
+    <string name="desc_promo_img">desc_promo_img</string>
+    <string name="descripstion_promo">Descripstion Promo</string>
+    <string name="title_promo">Title Promo</string>
+    <string name="masa_berlaku">Masa Berlaku</string>
+    <string name="_1_april_2018_1_mei_2018">1 April 2018 – 1 Mei 2018</string>
+    <string name="tentang_kelapa">
+        Kelapa Park Jepara merupakan Wana Wisata yang berlokasi di Desa Suwawal Timur Kecamatan Pakisaji Jepara yang dikembangkan oleh Perusahaan Daerah Aneka Usaha Jepara dan dibuka pada tanggal 3 Januari 2018. Dengan pemandangan gunung muria yang indah, Kelapa Park menawarkan fasilitas Restoran dan beberapa wahana yang menantang adrenalin seperti Offroad UTV Fin Komodo, Arena ATV (All Terrain Vehicle) dan Flying Fox. Selain itu, di Kelapa Park juga terdapat Gardu Pandang yang tepat untuk berselfie.
+    </string>
+    <string name="kontak_info">Kontak Info</string>
+    <string name="_085877339666">085877339666</string>
+    <string name="_081336687778">081336687778</string>
+    <string name="copyright">© Copyright Perusda Aneka Usaha Jepara</string>
 </resources>

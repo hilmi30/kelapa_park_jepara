@@ -10,11 +10,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import com.bumptech.glide.Glide
 import com.google.firebase.database.*
 import com.perusdajepara.kelapaparkjepara.MainActivity
 import com.perusdajepara.kelapaparkjepara.R
 import com.perusdajepara.kelapaparkjepara.reservasi.ReservasiActivity
 import com.squareup.picasso.Picasso
+import com.uncopt.android.widget.text.justify.JustifiedTextView
 import com.viewpagerindicator.CirclePageIndicator
 import org.fabiomsr.moneytextview.MoneyTextView
 
@@ -97,7 +99,7 @@ class DetailWahanaActivity : AppCompatActivity(), ValueEventListener {
                 namaWahana.text = p0.value.toString()
             }
             DESKRIPSI -> {
-                val descWahana = findViewById<TextView>(R.id.detail_desc_wahana)
+                val descWahana = findViewById<JustifiedTextView>(R.id.detail_desc_wahana)
                 descWahana.text = p0.value.toString()
             }
             HARGA -> {
@@ -131,7 +133,7 @@ class DetailWahanaActivity : AppCompatActivity(), ValueEventListener {
         override fun instantiateItem(container: ViewGroup?, position: Int): Any {
             val v = LayoutInflater.from(container?.context).inflate(R.layout.row_image_slider_wahana, container, false)
             val img = v.findViewById<ImageView>(R.id.detail_image_slider)
-            Picasso.get().load(imgData[position]).into(img)
+            Glide.with(container?.context).load(imgData[position]).into(img)
 
             container?.addView(v)
             return v

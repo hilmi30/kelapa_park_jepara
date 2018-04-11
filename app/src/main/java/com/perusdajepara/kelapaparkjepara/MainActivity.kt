@@ -25,12 +25,14 @@ import com.perusdajepara.kelapaparkjepara.mainfragments.*
 import com.perusdajepara.kelapaparkjepara.map.MapActivity
 import com.perusdajepara.kelapaparkjepara.tentang.TentangActivity
 import com.viewpagerindicator.CirclePageIndicator
+import io.salyangoz.updateme.UpdateMe
+import org.jetbrains.anko.alert
 import java.util.*
 import kotlin.collections.ArrayList
 
 
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     val ERROR_READ_VALUE = "error_read_value"
 
@@ -41,6 +43,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        UpdateMe.with(this, 60)
+                .onPositiveButtonClick{
+                    Log.d("Update", "Update")
+                }
+                .onNegativeButtonClick{
+                    Log.d("update", "update batal")
+                }
+                .setPositiveButtonColorRes(R.color.colorAccent)
+                .check()
 
         // set toolbar
         val toolbar = findViewById<Toolbar>(R.id.nav_toolbar)
@@ -104,7 +116,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         tabLayoutKategori.addTab(tabLayoutKategori.newTab().setText("PAKET").setIcon(R.drawable.ic_tickets))
         tabLayoutKategori.addTab(tabLayoutKategori.newTab().setText("RESTO").setIcon(R.drawable.ic_serve))
         tabLayoutKategori.addTab(tabLayoutKategori.newTab().setText("PROMO").setIcon(R.drawable.ic_promotions))
-//        tabLayoutKategori.addTab(tabLayoutKategori.newTab().setText("RESERVASI").setIcon(R.drawable.ic_booking))
 
         val tabAdapter = MainTabAdapter(supportFragmentManager)
         tabAdapter.addFragment(WahanaFragment())
@@ -167,7 +178,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.nav_peta -> {
-                val intent = Intent(this, MapActivity::class.java)
+                val coor = Uri.parse("geo:0,0?q=-6.5741287, 110.7405415(Kelapa Park Jepara)")
+                val intent = Intent(Intent.ACTION_VIEW, coor)
                 startActivity(intent)
             }
             R.id.nav_tentang -> {

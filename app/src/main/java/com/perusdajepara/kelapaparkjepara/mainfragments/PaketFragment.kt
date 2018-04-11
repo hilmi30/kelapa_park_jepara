@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -76,7 +77,7 @@ class PaketFragment : Fragment() {
 
         fun setGambar(gambar: String){
             val gambarPaket = view.findViewById<ImageView>(R.id.paket_img)
-            Picasso.get().load(gambar).into(gambarPaket)
+            Glide.with(view.context).load(gambar).into(gambarPaket)
         }
 
         fun setHarga(harga: Int){

@@ -9,5 +9,5 @@
         android:layout_height="match_parent"
         android:src="@drawable/ic_launcher_background"
         android:contentDescription="@string/image_slider"
-        android:scaleType="fitXY"/>
+        android:scaleType="centerCrop"/>
 </RelativeLayout>

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RelativeLayout
+import com.bumptech.glide.Glide
 import com.squareup.picasso.Picasso
 import java.util.zip.Inflater
 
@@ -24,7 +25,7 @@ class MainSliderAdapter(val imgData: ArrayList<String>): PagerAdapter(){
     override fun instantiateItem(container: ViewGroup?, position: Int): Any {
         val v = LayoutInflater.from(container?.context).inflate(R.layout.row_image_slider_main, container, false)
         val img = v.findViewById<ImageView>(R.id.main_image_slider)
-        Picasso.get().load(imgData[position]).into(img)
+        Glide.with(container?.context).load(imgData[position]).into(img)
 
         container?.addView(v)
         return v

@@ -17,10 +17,11 @@
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 
-    <style name="ActionBarTransparent" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="ActionBarTransparent" parent="Theme.AppCompat.Light">
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorPrimary">@android:color/transparent</item>
         <item name="windowActionBarOverlay">true</item>
+        <item name="homeAsUpIndicator">@drawable/ic_arrow_back_black_24dp</item>
     </style>
 
     <style name="ActionBarTransparentLight" parent="Theme.AppCompat.Light">

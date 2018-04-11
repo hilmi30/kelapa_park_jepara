@@ -8,8 +8,9 @@ class FirebaseModel {
     var nama: String? = null
     var gambar: String? = null
     var keterangan: String? = null
-    var item: String? = null
     var deskripsi: String? = null
     var foto: ArrayList<String>? = null
     var item_foto: ArrayList<String>? = null
+    var title: String? = null
+    val berlaku: String? = null
 }
