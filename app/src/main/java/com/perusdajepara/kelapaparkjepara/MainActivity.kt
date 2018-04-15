@@ -18,9 +18,13 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import com.github.ybq.android.spinkit.SpinKitView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.perusdajepara.kelapaparkjepara.auth.AuthActivity
 import com.perusdajepara.kelapaparkjepara.mainfragments.*
 import com.perusdajepara.kelapaparkjepara.map.MapActivity
 import com.perusdajepara.kelapaparkjepara.tentang.TentangActivity
@@ -40,6 +44,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     var mDataRef: DatabaseReference? = null
     var drawerLayout: DrawerLayout? = null
 
+    var mAuth: FirebaseAuth? = null
+    var spinLoading: SpinKitView? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -53,6 +60,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
                 .setPositiveButtonColorRes(R.color.colorAccent)
                 .check()
+
+        spinLoading = findViewById(R.id.spin_kit_main)
+
+        mAuth = FirebaseAuth.getInstance()
 
         // set toolbar
         val toolbar = findViewById<Toolbar>(R.id.nav_toolbar)
@@ -186,6 +197,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 val intent = Intent(this, TentangActivity::class.java)
                 startActivity(intent)
             }
+            R.id.nav_logout -> {
+                spinLoading?.visibility = View.VISIBLE
+                mAuth?.signOut()
+                val handler = Handler()
+                handler.postDelayed({
+                    val intent = Intent(this, AuthActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                    spinLoading?.visibility = View.GONE
+                }, 2000)
+            }
             R.id.nav_website -> {
                 try {
                     val url = "http://www.kelapapark.com/"
@@ -226,6 +248,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         drawerLayout!!.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val currentUser = mAuth?.currentUser
+        if(currentUser == null || !currentUser.isEmailVerified){
+            val intent = Intent(this, AuthActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     override fun onBackPressed() {

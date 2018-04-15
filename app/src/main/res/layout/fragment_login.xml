@@ -20,49 +20,53 @@
             android:contentDescription="@string/logo_login" />
 
         <EditText
-            android:text=""
-            android:inputType="textEmailAddress"
-            android:textSize="16sp"
-            android:drawableStart="@mipmap/ic_email_white_24dp"
-            android:drawablePadding="20dp"
+            android:id="@+id/login_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/edit_text_style"
-            android:padding="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:drawablePadding="20dp"
+            android:drawableStart="@mipmap/ic_email_white_24dp"
             android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:padding="15dp"
+            android:text=""
             android:textColor="@color/white"
-            android:textColorHint="@color/whiteTransparent"/>
+            android:textColorHint="@color/whiteTransparent"
+            android:textSize="16sp" />
 
         <EditText
-            android:text=""
-            android:inputType="textPassword"
-            android:textSize="16sp"
-            android:drawableStart="@mipmap/ic_vpn_key_white_24dp"
-            android:drawablePadding="20dp"
+            android:id="@+id/login_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/edit_text_style"
-            android:padding="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:drawablePadding="20dp"
+            android:drawableStart="@mipmap/ic_vpn_key_white_24dp"
             android:hint="@string/password"
+            android:inputType="textPassword"
+            android:padding="15dp"
+            android:text=""
             android:textColor="@color/white"
-            android:textColorHint="@color/whiteTransparent"/>
+            android:textColorHint="@color/whiteTransparent"
+            android:textSize="16sp" />
 
         <Button
-            android:background="@drawable/button_common_style"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:id="@+id/login_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/login"/>
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button_common_style"
+            android:text="@string/login"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/login_lupa_password"

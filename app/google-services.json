@@ -1,35 +1,35 @@
 {
   "project_info": {
-    "project_number": "368929497563",
-    "firebase_url": "https://kelapaparkjepara-3f9f8.firebaseio.com",
-    "project_id": "kelapaparkjepara-3f9f8",
-    "storage_bucket": "kelapaparkjepara-3f9f8.appspot.com"
+    "project_number": "1008048029935",
+    "firebase_url": "https://kelapaparkjepara.firebaseio.com",
+    "project_id": "kelapaparkjepara",
+    "storage_bucket": "kelapaparkjepara.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:368929497563:android:08b5f8fae8f54411",
+        "mobilesdk_app_id": "1:1008048029935:android:08b5f8fae8f54411",
         "android_client_info": {
           "package_name": "com.perusdajepara.kelapaparkjepara"
         }
       },
       "oauth_client": [
         {
-          "client_id": "368929497563-p7n9benn219k2shekv3qfhsa7d82rmtc.apps.googleusercontent.com",
+          "client_id": "1008048029935-ajl34iamvdk4dksd5ivlvppbhub62kst.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.perusdajepara.kelapaparkjepara",
-            "certificate_hash": "1ab94ab221aaa79c5a0bce0ba5879cee7cbd9775"
+            "certificate_hash": "6d9e437676ca2d8fa0ca0b80f1f312f6d02ea7b7"
           }
         },
         {
-          "client_id": "368929497563-t9nhvf68mpmnc8ej6tcsea2sb3aff064.apps.googleusercontent.com",
+          "client_id": "1008048029935-oehaeropo45uvj8d4p31r1s4ulc75g7j.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCikLOkIrq7h6zt6ZaHV0NjoUeesJzBxVA"
+          "current_key": "AIzaSyDoNkSaKR6kOu85l9INde8cwwE7CB-t_jQ"
         }
       ],
       "services": {
@@ -40,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "368929497563-t9nhvf68mpmnc8ej6tcsea2sb3aff064.apps.googleusercontent.com",
+              "client_id": "1008048029935-oehaeropo45uvj8d4p31r1s4ulc75g7j.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

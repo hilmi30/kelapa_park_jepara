@@ -12,6 +12,10 @@
         android:title="@string/tentang"
         android:icon="@drawable/ic_info_black_24dp"/>
 
+    <item android:id="@+id/nav_logout"
+        android:title="@string/keluar"
+        android:icon="@drawable/ic_exit_to_app_black_24dp"/>
+
     <item android:title="@string/media_sosial">
         <menu>
             <item android:id="@+id/nav_website"
