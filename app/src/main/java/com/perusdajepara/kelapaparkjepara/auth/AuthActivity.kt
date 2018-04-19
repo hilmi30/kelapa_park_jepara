@@ -2,6 +2,7 @@ package com.perusdajepara.kelapaparkjepara.auth
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.perusdajepara.kelapaparkjepara.R
 
 class AuthActivity : AppCompatActivity() {

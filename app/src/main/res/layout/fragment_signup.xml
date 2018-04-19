@@ -26,7 +26,7 @@
             <EditText
                 android:id="@+id/signup_nama"
                 android:text=""
-                android:inputType="text"
+                android:inputType="textCapWords"
                 android:textSize="16sp"
                 android:drawableStart="@mipmap/ic_account_circle_white_24dp"
                 android:drawablePadding="20dp"
@@ -126,6 +126,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/signup"/>
+
+            <TextView
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:layout_margin="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/cek_email_verifikasi"/>
 
         </LinearLayout>
 

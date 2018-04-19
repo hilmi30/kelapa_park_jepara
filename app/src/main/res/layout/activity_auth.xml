@@ -5,7 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/auth_container"
-    android:background="@mipmap/coconut"
     tools:context="com.perusdajepara.kelapaparkjepara.auth.AuthActivity">
+
+    <ImageView
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@mipmap/coconut"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/login" />
 
 </FrameLayout>

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import com.perusdajepara.kelapaparkjepara.MainActivity
 import com.perusdajepara.kelapaparkjepara.R
+import io.paperdb.Paper
 
 class SplashscreenActivity : AppCompatActivity() {
 
@@ -14,7 +15,7 @@ class SplashscreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splashscreen)
-
+        Paper.init(this)
         Handler().postDelayed({
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)

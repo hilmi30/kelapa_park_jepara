@@ -11,20 +11,24 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.github.ybq.android.spinkit.SpinKitView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.perusdajepara.kelapaparkjepara.MainActivity
 import com.perusdajepara.kelapaparkjepara.R
+import io.paperdb.Paper
 
-
-/**
- * A simple [Fragment] subclass.
- */
 class LoginFragment : Fragment() {
 
     var mAuth: FirebaseAuth? = null
+    var mDatabase: DatabaseReference? = null
     var emailUser: EditText? = null
     var passwordUser: EditText? = null
     var loginBtn: Button? = null
+    var spinLoading: SpinKitView? = null
+
+    val PASSWORD = "password"
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -32,6 +36,9 @@ class LoginFragment : Fragment() {
         val v = inflater!!.inflate(R.layout.fragment_login, container, false)
 
         mAuth = FirebaseAuth.getInstance()
+        mDatabase = FirebaseDatabase.getInstance().reference
+
+        spinLoading = v.findViewById(R.id.spin_kit_login)
 
         emailUser = v.findViewById(R.id.login_email)
         passwordUser = v.findViewById(R.id.login_password)
@@ -56,32 +63,61 @@ class LoginFragment : Fragment() {
         return v
     }
 
+    private fun allIsEnabled(bool: Boolean){
+        emailUser?.isEnabled = bool
+        passwordUser?.isEnabled = bool
+    }
+
+    private fun hideLoading(b: Boolean, visible: Int) {
+        allIsEnabled(b)
+        spinLoading?.visibility = visible
+    }
+
     private fun signInWithEmail(email: String, password: String) {
+
+        hideLoading(false, View.VISIBLE)
+
         if(!validate(email, password)){
+            hideLoading(true, View.GONE)
             Toast.makeText(context, "Gagal login, silahkan cek kembali", Toast.LENGTH_LONG).show()
         } else {
             mAuth?.signInWithEmailAndPassword(email, password)
                     ?.addOnCompleteListener(activity, {
                         if(it.isSuccessful){
-                            checkEmailVerified()
+                            hideLoading(true, View.GONE)
+                            checkEmailVerified(password)
                         } else {
+                            hideLoading(true, View.GONE)
                             Toast.makeText(context, "Login Gagal", Toast.LENGTH_LONG).show()
                         }
                     })
         }
     }
 
-    private fun checkEmailVerified() {
+    private fun checkEmailVerified(password: String) {
+
+        hideLoading(false, View.VISIBLE)
+
         val user = mAuth?.currentUser
         if (user != null) {
             if(user.isEmailVerified){
+                hideLoading(true, View.GONE)
+
+                val userUid = user.uid
+                val userData = mDatabase?.child("user")?.child(userUid)
+                userData?.child("isVerified")?.setValue(user.isEmailVerified)
+                // simpan password untuk validasi edit profil
+                Paper.book().write(PASSWORD, password)
+
                 val intent = Intent(context, MainActivity::class.java)
                 startActivity(intent)
                 activity.finish()
             } else {
+                hideLoading(true, View.GONE)
                 Toast.makeText(context, "Email anda belum terverifikasi", Toast.LENGTH_LONG).show()
             }
         } else {
+            hideLoading(true, View.GONE)
             Toast.makeText(context, "Terjadi Kesalahan", Toast.LENGTH_LONG).show()
         }
     }
@@ -131,5 +167,4 @@ class LoginFragment : Fragment() {
         fragmentTrans.addToBackStack(null)
         fragmentTrans.commit()
     }
-
 }

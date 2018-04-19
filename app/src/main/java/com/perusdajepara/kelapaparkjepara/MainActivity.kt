@@ -2,13 +2,11 @@ package com.perusdajepara.kelapaparkjepara
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Typeface
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.support.design.widget.AppBarLayout
 import android.support.design.widget.NavigationView
 import android.support.design.widget.TabLayout
 import android.support.v4.view.GravityCompat
@@ -26,9 +24,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.perusdajepara.kelapaparkjepara.auth.AuthActivity
 import com.perusdajepara.kelapaparkjepara.mainfragments.*
-import com.perusdajepara.kelapaparkjepara.map.MapActivity
+import com.perusdajepara.kelapaparkjepara.profile.ProfileActivity
 import com.perusdajepara.kelapaparkjepara.tentang.TentangActivity
 import com.viewpagerindicator.CirclePageIndicator
+import io.paperdb.Paper
 import io.salyangoz.updateme.UpdateMe
 import org.jetbrains.anko.alert
 import java.util.*
@@ -46,6 +45,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     var mAuth: FirebaseAuth? = null
     var spinLoading: SpinKitView? = null
+    var headerName: TextView? = null
+    var navView: NavigationView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +62,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 .setPositiveButtonColorRes(R.color.colorAccent)
                 .check()
 
+        headerName = findViewById(R.id.nama_user_navbar)
         spinLoading = findViewById(R.id.spin_kit_main)
 
         mAuth = FirebaseAuth.getInstance()
@@ -83,8 +85,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawerLayout?.addDrawerListener(mToggle!!)
         mToggle?.syncState()
 
-        val navView = findViewById<NavigationView>(R.id.nav_view)
-        navView.setNavigationItemSelectedListener(this)
+        navView = findViewById(R.id.nav_view)
+        navView?.setNavigationItemSelectedListener(this)
 
         val pager = findViewById<ViewPager>(R.id.main_view_pager)
         val circle = findViewById<CirclePageIndicator>(R.id.main_circle_indicator)
@@ -197,17 +199,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 val intent = Intent(this, TentangActivity::class.java)
                 startActivity(intent)
             }
-            R.id.nav_logout -> {
-                spinLoading?.visibility = View.VISIBLE
-                mAuth?.signOut()
-                val handler = Handler()
-                handler.postDelayed({
-                    val intent = Intent(this, AuthActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                    spinLoading?.visibility = View.GONE
-                }, 2000)
-            }
             R.id.nav_website -> {
                 try {
                     val url = "http://www.kelapapark.com/"
@@ -244,6 +235,28 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     Toast.makeText(this, "youtube not found.", Toast.LENGTH_SHORT).show()
                 }
             }
+            R.id.nav_profile -> {
+                val intent = Intent(this, ProfileActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.nav_logout -> {
+                alert("Apakah anda yakin ingin keluar"){
+                    positiveButton("Ya"){
+                        spinLoading?.visibility = View.VISIBLE
+                        mAuth?.signOut()
+                        val handler = Handler()
+                        handler.postDelayed({
+                            Paper.book().destroy()
+                            val intent = Intent(this@MainActivity, AuthActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                            spinLoading?.visibility = View.GONE
+                        }, 3000)
+                    }
+                    negativeButton("Tidak"){
+                    }
+                }.show()
+            }
         }
 
         drawerLayout!!.closeDrawer(GravityCompat.START)
@@ -252,11 +265,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onStart() {
         super.onStart()
+
         val currentUser = mAuth?.currentUser
         if(currentUser == null || !currentUser.isEmailVerified){
             val intent = Intent(this, AuthActivity::class.java)
             startActivity(intent)
             finish()
+        } else {
+            val headerView = navView?.getHeaderView(0)
+            val headerNameUser = headerView?.findViewById<TextView>(R.id.nama_user_navbar)
+            headerNameUser?.text = currentUser.displayName
         }
     }
 

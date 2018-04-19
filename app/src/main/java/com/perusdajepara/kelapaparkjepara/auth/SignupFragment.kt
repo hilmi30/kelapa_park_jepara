@@ -14,6 +14,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.perusdajepara.kelapaparkjepara.R
 import com.github.ybq.android.spinkit.SpinKitView
 import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import io.paperdb.Paper
 import org.jetbrains.anko.alert
 
 /**
@@ -22,6 +25,7 @@ import org.jetbrains.anko.alert
 class SignupFragment : Fragment() {
 
     var mAuth: FirebaseAuth? = null
+    var mDatabase: DatabaseReference? = null
     var nama: EditText? = null
     var email: EditText? = null
     var telp: EditText? = null
@@ -30,12 +34,15 @@ class SignupFragment : Fragment() {
     var spinLoading: SpinKitView? = null
     var daftarBtn: Button? = null
 
+    val TELP = "telp"
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val v = inflater!!.inflate(R.layout.fragment_signup, container, false)
 
         mAuth = FirebaseAuth.getInstance()
+        mDatabase = FirebaseDatabase.getInstance().reference
 
         spinLoading = v.findViewById(R.id.spin_kit)
 
@@ -62,55 +69,80 @@ class SignupFragment : Fragment() {
 
     private fun createUserWithEmail(namaText: String, emailText: String, telpText: String, passText: String, passRepeatText: String) {
 
-        allIsEnabled(false)
-        spinLoading?.visibility = View.VISIBLE
+        hideLoading(false, View.VISIBLE)
 
         if(!validate(namaText, emailText, telpText, passText, passRepeatText)){
-            allIsEnabled(true)
+
+            hideLoading(true, View.GONE)
+
             Toast.makeText(context, "Gagal daftar, silahkan cek kembali", Toast.LENGTH_LONG).show()
 
         } else {
             mAuth?.createUserWithEmailAndPassword(emailText, passText)
                     ?.addOnCompleteListener(activity, {
-                        allIsEnabled(true)
                         if(it.isSuccessful){
-                            sendEmailVerification(namaText)
+                            hideLoading(true, View.GONE)
+                            sendEmailVerification(namaText, telpText)
                         } else {
+                            hideLoading(true, View.GONE)
                             Toast.makeText(context, "Email yang anda masukkan sudah terdaftar", Toast.LENGTH_LONG).show()
                         }
                     })
         }
-
-        spinLoading?.visibility = View.GONE
     }
 
-    private fun sendEmailVerification(namaText: String) {
+    private fun hideLoading(b: Boolean, visible: Int) {
+        allIsEnabled(b)
+        spinLoading?.visibility = visible
+    }
+
+    private fun sendEmailVerification(namaText: String, telpText: String) {
+
+        hideLoading(false, View.VISIBLE)
+
         val currentUser = mAuth?.currentUser
         if(currentUser != null){
-            val updateUser = UserProfileChangeRequest.Builder().setDisplayName(namaText).build()
+
+            val email = currentUser.email
+            val uid = currentUser.uid
+            val isVerified = currentUser.isEmailVerified
+
+            saveUserDataToFirebase(namaText, email, uid, telpText, isVerified)
+
+            // set display name firebase user
+            val updateUser = UserProfileChangeRequest.Builder()
+                    .setDisplayName(namaText).build()
             currentUser.updateProfile(updateUser)
+
             currentUser.sendEmailVerification().addOnCompleteListener({
                 if(it.isSuccessful){
-                    Toast.makeText(context, "Email verifikasi terkirim, silahkan cek email anda", Toast.LENGTH_LONG).show()
+                    hideLoading(true, View.GONE)
+                    activity.alert("Email verifikasi terkirim, silahkan cek email anda") {
+                        negativeButton("Tutup"){
+
+                        }
+                    }.show()
                 } else {
+                    hideLoading(true, View.GONE)
                     Toast.makeText(context, "Email verifikasi gagal dikirim", Toast.LENGTH_LONG).show()
                 }
             })
         } else {
+            hideLoading(true, View.GONE)
             Toast.makeText(context, "Terjadi kesalahan", Toast.LENGTH_LONG).show()
         }
-        spinLoading?.visibility = View.GONE
     }
 
-//    private fun goToLogin() {
-//        val loginFragment = LoginFragment()
-//        val fragmentManager = fragmentManager
-//        val fragmentTrans = fragmentManager.beginTransaction()
-//        fragmentTrans.setCustomAnimations(R.anim.slide_out_right, R.anim.slide_in_left,
-//                R.anim.slide_in_right, R.anim.slide_out_left)
-//        fragmentTrans.replace(R.id.auth_container, loginFragment, LoginFragment::class.java.simpleName)
-//        fragmentTrans.commit()
-//    }
+    private fun saveUserDataToFirebase(namaText: String, email: String?, uid: String, telpText: String,
+                                       verified: Boolean) {
+
+        val userData = mDatabase?.child("user")?.child(uid)
+        userData?.child("nama")?.setValue(namaText)
+        userData?.child("email")?.setValue(email)
+        userData?.child("uid")?.setValue(uid)
+        userData?.child("telepon")?.setValue(telpText)
+        userData?.child("isVerified")?.setValue(verified)
+    }
 
     private fun allIsEnabled(bool: Boolean){
         nama?.isEnabled = bool
