@@ -5,28 +5,24 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.bumptech.glide.Glide
 import com.google.firebase.database.*
-import com.perusdajepara.kelapaparkjepara.MainActivity
 import com.perusdajepara.kelapaparkjepara.R
+import com.perusdajepara.kelapaparkjepara.model.WahanaModel
 import com.perusdajepara.kelapaparkjepara.reservasi.ReservasiActivity
-import com.squareup.picasso.Picasso
-import com.uncopt.android.widget.text.justify.JustifiedTextView
 import com.viewpagerindicator.CirclePageIndicator
-import org.fabiomsr.moneytextview.MoneyTextView
+import kotlinx.android.synthetic.main.activity_detail_wahana.*
+import org.jetbrains.anko.toast
+import java.text.NumberFormat
+import java.util.*
 
-class DetailWahanaActivity : AppCompatActivity(), ValueEventListener {
+class DetailWahanaActivity : AppCompatActivity() {
 
     val ID_WAHANA = "wahana_id"
-    val DESKRIPSI = "deskripsi"
-    val NAMA = "nama"
-    val HARGA = "harga"
-    val KET = "keterangan"
 
     var mWahanaRef: DatabaseReference? = null
     var wahana_id: String? = null
@@ -43,44 +39,38 @@ class DetailWahanaActivity : AppCompatActivity(), ValueEventListener {
         val viewPager = findViewById<ViewPager>(R.id.detail_view_pager)
         val density = resources.displayMetrics.density
 
-        mWahanaRef = FirebaseDatabase.getInstance().reference.child("wahana").child(wahana_id)
+        val locale = Locale("in", "ID")
+        val numberFormat = NumberFormat.getCurrencyInstance(locale)
 
-        // detail wahana item
-        val mWahanaNama = mWahanaRef?.child(NAMA)
-        mWahanaNama?.addValueEventListener(this)
-        val mWahanaDesc = mWahanaRef?.child(DESKRIPSI)
-        mWahanaDesc?.addValueEventListener(this)
-        val mWahanaHarga = mWahanaRef?.child(HARGA)
-        mWahanaHarga?.addValueEventListener(this)
-        val mWahanaKet = mWahanaRef?.child(KET)
-        mWahanaKet?.addValueEventListener(this)
-
-        // image slider detail wahana
-        val mFotoWahana = mWahanaRef?.child("foto")
-        mFotoWahana?.addValueEventListener(object: ValueEventListener{
+        mWahanaRef = FirebaseDatabase.getInstance().reference.child("wahana/$wahana_id")
+        mWahanaRef?.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError?) {
-                Log.w(MainActivity().ERROR_READ_VALUE, "Failed to read value.", p0?.toException())
+                toast(getString(R.string.terjadi_kesalahan))
             }
 
             override fun onDataChange(p0: DataSnapshot?) {
-                val foto = ArrayList<String>()
-                for(data in p0?.children!!){
-                    val value = data.value.toString()
-                    foto.add(value)
-                }
+                val wahanaDetail = p0?.getValue(WahanaModel::class.java)
+
+                detail_nama_wahana.text = wahanaDetail?.nama
+                detail_desc_wahana.text = wahanaDetail?.deskripsi
+                detail_harga_wahana.text = numberFormat.format(wahanaDetail?.harga)
+                detail_ket_wahana.text = wahanaDetail?.keterangan
 
                 // view pager untuk image slider
-                val adapter = WahanaSliderAdapter(foto)
+                val adapter = WahanaSliderAdapter(wahanaDetail?.foto as List<String>)
                 viewPager.adapter = adapter
 
                 // cicrle indikator
                 circle.setViewPager(viewPager)
                 circle.radius = 5 * density
             }
+
         })
 
-        val wahanaReservasi = findViewById<Button>(R.id.reservasi_wahana_btn)
-        wahanaReservasi.setOnClickListener {
+        val status = intent.getBooleanExtra("status", false)
+        reservasi_wahana_btn.isEnabled = status
+
+        reservasi_wahana_btn.setOnClickListener {
             val intent = Intent(this, ReservasiActivity::class.java)
             intent.putExtra(ReservasiActivity().ID, wahana_id)
             intent.putExtra(ReservasiActivity().KEY, "wahana")
@@ -88,40 +78,7 @@ class DetailWahanaActivity : AppCompatActivity(), ValueEventListener {
         }
     }
 
-    override fun onCancelled(p0: DatabaseError?) {
-        Log.w(MainActivity().ERROR_READ_VALUE, "Failed to read value.", p0?.toException())
-    }
-
-    override fun onDataChange(p0: DataSnapshot?) {
-        when(p0?.key){
-            NAMA -> {
-                val namaWahana = findViewById<TextView>(R.id.detail_nama_wahana)
-                namaWahana.text = p0.value.toString()
-            }
-            DESKRIPSI -> {
-                val descWahana = findViewById<JustifiedTextView>(R.id.detail_desc_wahana)
-                descWahana.text = p0.value.toString()
-            }
-            HARGA -> {
-                val hargaWahana = findViewById<TextView>(R.id.detail_harga_wahana)
-                val valueStr = p0.value.toString()
-                val lengthStr = valueStr.length
-                if(valueStr.length >= 4){
-                    val result = "Rp" + valueStr.substring(0, lengthStr - 3) + "." + valueStr.substring(lengthStr - 3, lengthStr)
-                    hargaWahana?.text = result
-                } else {
-                    val result = "Rp"+valueStr
-                    hargaWahana?.text = result
-                }
-            }
-            KET -> {
-                val ketWahana = findViewById<TextView>(R.id.detail_ket_wahana)
-                ketWahana.text = p0.value.toString()
-            }
-        }
-    }
-
-    class WahanaSliderAdapter(val imgData: ArrayList<String>): PagerAdapter(){
+    class WahanaSliderAdapter(private val imgData: List<String>): PagerAdapter(){
         override fun isViewFromObject(view: View?, `object`: Any?): Boolean {
             return view == `object` as RelativeLayout
         }
@@ -142,6 +99,5 @@ class DetailWahanaActivity : AppCompatActivity(), ValueEventListener {
         override fun destroyItem(container: ViewGroup?, position: Int, `object`: Any?) {
             container?.removeView(`object`as RelativeLayout)
         }
-
     }
 }

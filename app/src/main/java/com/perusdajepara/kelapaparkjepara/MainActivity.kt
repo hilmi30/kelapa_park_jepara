@@ -29,7 +29,10 @@ import com.perusdajepara.kelapaparkjepara.tentang.TentangActivity
 import com.viewpagerindicator.CirclePageIndicator
 import io.paperdb.Paper
 import io.salyangoz.updateme.UpdateMe
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.navigation_header.view.*
 import org.jetbrains.anko.alert
+import org.jetbrains.anko.toast
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -41,55 +44,28 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     var mToggle: ActionBarDrawerToggle? = null
     var mDataRef: DatabaseReference? = null
-    var drawerLayout: DrawerLayout? = null
-
-    var mAuth: FirebaseAuth? = null
-    var spinLoading: SpinKitView? = null
-    var headerName: TextView? = null
-    var navView: NavigationView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        UpdateMe.with(this, 60)
-                .onPositiveButtonClick{
-                    Log.d("Update", "Update")
-                }
-                .onNegativeButtonClick{
-                    Log.d("update", "update batal")
-                }
-                .setPositiveButtonColorRes(R.color.colorAccent)
-                .check()
-
-        headerName = findViewById(R.id.nama_user_navbar)
-        spinLoading = findViewById(R.id.spin_kit_main)
-
-        mAuth = FirebaseAuth.getInstance()
-
         // set toolbar
-        val toolbar = findViewById<Toolbar>(R.id.nav_toolbar)
-        setSupportActionBar(toolbar)
+        setSupportActionBar(nav_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = ""
 
         val type = Typeface.createFromAsset(assets, "paradise.ttf")
-        val titleText = findViewById<TextView>(R.id.title_toolbar)
-        titleText.setTypeface(type)
+        title_toolbar.typeface = type
 
         mDataRef = FirebaseDatabase.getInstance().reference
 
         // properti navigation drawer
-        drawerLayout = findViewById(R.id.drawer_layout)
-        mToggle = ActionBarDrawerToggle(this, drawerLayout, R.string.navbar_open, R.string.navbar_close)
-        drawerLayout?.addDrawerListener(mToggle!!)
+        mToggle = ActionBarDrawerToggle(this, drawer_layout, R.string.navbar_open, R.string.navbar_close)
+        drawer_layout.addDrawerListener(mToggle as ActionBarDrawerToggle)
         mToggle?.syncState()
 
-        navView = findViewById(R.id.nav_view)
-        navView?.setNavigationItemSelectedListener(this)
+        nav_view?.setNavigationItemSelectedListener(this)
 
-        val pager = findViewById<ViewPager>(R.id.main_view_pager)
-        val circle = findViewById<CirclePageIndicator>(R.id.main_circle_indicator)
         val density = resources.displayMetrics.density
 
         val sliderRef = mDataRef?.child("front_page_image_slider")
@@ -109,26 +85,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
                 // view pager untuk image slider
                 val adapter = MainSliderAdapter(image)
-                pager.adapter = adapter
+                main_view_pager.adapter = adapter
 
                 // cicrle indikator
-                circle.setViewPager(pager)
-                circle.radius = 5 * density
+                main_circle_indicator.setViewPager(main_view_pager)
+                main_circle_indicator.radius = 5 * density
 
                 // set swipe otomatis untuk image slider
-                autoSwipeSlider(image, pager)
+                autoSwipeSlider(image, main_view_pager)
             }
 
         })
 
-        val viewPagerKategori = findViewById<ViewPager>(R.id.main_kategori_view_pager)
-        val tabLayoutKategori = findViewById<TabLayout>(R.id.main_tab_layout)
-
         // tambah tab text dan icon
-        tabLayoutKategori.addTab(tabLayoutKategori.newTab().setText("WAHANA").setIcon(R.drawable.ic_jeep))
-        tabLayoutKategori.addTab(tabLayoutKategori.newTab().setText("PAKET").setIcon(R.drawable.ic_tickets))
-        tabLayoutKategori.addTab(tabLayoutKategori.newTab().setText("RESTO").setIcon(R.drawable.ic_serve))
-        tabLayoutKategori.addTab(tabLayoutKategori.newTab().setText("PROMO").setIcon(R.drawable.ic_promotions))
+        main_tab_layout.addTab(main_tab_layout.newTab().setText("WAHANA").setIcon(R.drawable.ic_jeep))
+        main_tab_layout.addTab(main_tab_layout.newTab().setText("PAKET").setIcon(R.drawable.ic_tickets))
+        main_tab_layout.addTab(main_tab_layout.newTab().setText("RESTO").setIcon(R.drawable.ic_serve))
+        main_tab_layout.addTab(main_tab_layout.newTab().setText("PROMO").setIcon(R.drawable.ic_promotions))
 
         val tabAdapter = MainTabAdapter(supportFragmentManager)
         tabAdapter.addFragment(WahanaFragment())
@@ -137,10 +110,27 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         tabAdapter.addFragment(PromoFragment())
         tabAdapter.addFragment(ReservasiFragment())
 
-        viewPagerKategori.offscreenPageLimit = 4
-        viewPagerKategori.adapter = tabAdapter
-        viewPagerKategori.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayoutKategori))
-        tabLayoutKategori.setOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(viewPagerKategori))
+        main_kategori_view_pager.offscreenPageLimit = 4
+        main_kategori_view_pager.adapter = tabAdapter
+        main_kategori_view_pager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(main_tab_layout))
+        main_tab_layout.setOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(main_kategori_view_pager))
+
+        mDataRef?.child("kondisi")?.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError?) {
+                toast(getString(R.string.terjadi_kesalahan))
+            }
+
+            override fun onDataChange(p0: DataSnapshot?) {
+                if (p0?.exists() as Boolean) {
+                    val cuaca = p0.child("cuaca").value.toString().toUpperCase()
+                    val suhu = p0.child("suhu").value.toString() + " \u00B0C"
+
+                    val headerView = nav_view.getHeaderView(0)
+                    headerView.cuaca.text = "$cuaca, $suhu"
+                }
+            }
+
+        })
     }
 
     private fun autoSwipeSlider(img: List<String>, pager: ViewPager) {
@@ -191,9 +181,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.nav_peta -> {
-                val coor = Uri.parse("geo:0,0?q=-6.5741287, 110.7405415(Kelapa Park Jepara)")
-                val intent = Intent(Intent.ACTION_VIEW, coor)
-                startActivity(intent)
+
+                mDataRef?.child("lokasi")?.addValueEventListener(object : ValueEventListener {
+                    override fun onCancelled(p0: DatabaseError?) {
+                        toast(getString(R.string.terjadi_kesalahan))
+                    }
+
+                    override fun onDataChange(p0: DataSnapshot?) {
+                        if (p0?.exists() as Boolean) {
+                            val lat = p0.child("lat").value.toString()
+                            val lng = p0.child("lng").value.toString()
+
+                            val coor = Uri.parse("geo:0,0?q=$lat, $lng(Kelapa Park Jepara)")
+                            val intent = Intent(Intent.ACTION_VIEW, coor)
+                            startActivity(intent)
+                        }
+                    }
+
+                })
             }
             R.id.nav_tentang -> {
                 val intent = Intent(this, TentangActivity::class.java)
@@ -201,86 +206,89 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.nav_website -> {
                 try {
-                    val url = "http://www.kelapapark.com/"
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                    startActivity(intent)
+                    mDataRef?.child("socialMediaLink/web")?.addValueEventListener(object : ValueEventListener {
+                        override fun onCancelled(p0: DatabaseError?) {
+                            toast(getString(R.string.terjadi_kesalahan))
+                        }
+
+                        override fun onDataChange(p0: DataSnapshot?) {
+                            if (p0?.exists() as Boolean) {
+                                val url = p0.value.toString()
+                                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                                startActivity(intent)
+                            }
+                        }
+                    })
                 } catch (e: ActivityNotFoundException){
                     Toast.makeText(this, "Browser not found.", Toast.LENGTH_SHORT).show()
                 }
             }
             R.id.nav_fb -> {
                 try {
-                    val url = "https://www.facebook.com/kelapapark/"
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                    startActivity(intent)
+                    mDataRef?.child("socialMediaLink/fb")?.addValueEventListener(object : ValueEventListener {
+                        override fun onCancelled(p0: DatabaseError?) {
+                            toast(getString(R.string.terjadi_kesalahan))
+                        }
+
+                        override fun onDataChange(p0: DataSnapshot?) {
+                            if (p0?.exists() as Boolean) {
+                                val url = p0.value.toString()
+                                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                                startActivity(intent)
+                            }
+                        }
+                    })
                 } catch (e: ActivityNotFoundException){
                     Toast.makeText(this, "facebook not found.", Toast.LENGTH_SHORT).show()
                 }
             }
             R.id.nav_instagram -> {
                 try {
-                    val url = "https://www.instagram.com/kelapapark/?hl=id"
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                    startActivity(intent)
+                    mDataRef?.child("socialMediaLink/ig")?.addValueEventListener(object : ValueEventListener {
+                        override fun onCancelled(p0: DatabaseError?) {
+                            toast(getString(R.string.terjadi_kesalahan))
+                        }
+
+                        override fun onDataChange(p0: DataSnapshot?) {
+                            if (p0?.exists() as Boolean) {
+                                val url = p0.value.toString()
+                                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                                startActivity(intent)
+                            }
+                        }
+                    })
                 } catch (e: ActivityNotFoundException){
                     Toast.makeText(this, "instagram not found.", Toast.LENGTH_SHORT).show()
                 }
             }
             R.id.nav_youtube -> {
                 try {
-                    val url = "https://www.youtube.com/channel/UCTmZb4hyppphoH_MnNh8YLw"
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                    startActivity(intent)
+                    mDataRef?.child("socialMediaLink/yt")?.addValueEventListener(object : ValueEventListener {
+                        override fun onCancelled(p0: DatabaseError?) {
+                            toast(getString(R.string.terjadi_kesalahan))
+                        }
+
+                        override fun onDataChange(p0: DataSnapshot?) {
+                            if (p0?.exists() as Boolean) {
+                                val url = p0.value.toString()
+                                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                                startActivity(intent)
+                            }
+                        }
+                    })
                 } catch (e: ActivityNotFoundException){
                     Toast.makeText(this, "youtube not found.", Toast.LENGTH_SHORT).show()
                 }
             }
-            R.id.nav_profile -> {
-                val intent = Intent(this, ProfileActivity::class.java)
-                startActivity(intent)
-            }
-            R.id.nav_logout -> {
-                alert("Apakah anda yakin ingin keluar"){
-                    positiveButton("Ya"){
-                        spinLoading?.visibility = View.VISIBLE
-                        mAuth?.signOut()
-                        val handler = Handler()
-                        handler.postDelayed({
-                            Paper.book().destroy()
-                            val intent = Intent(this@MainActivity, AuthActivity::class.java)
-                            startActivity(intent)
-                            finish()
-                            spinLoading?.visibility = View.GONE
-                        }, 3000)
-                    }
-                    negativeButton("Tidak"){
-                    }
-                }.show()
-            }
         }
 
-        drawerLayout!!.closeDrawer(GravityCompat.START)
+        drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
 
-    override fun onStart() {
-        super.onStart()
-
-        val currentUser = mAuth?.currentUser
-        if(currentUser == null || !currentUser.isEmailVerified){
-            val intent = Intent(this, AuthActivity::class.java)
-            startActivity(intent)
-            finish()
-        } else {
-            val headerView = navView?.getHeaderView(0)
-            val headerNameUser = headerView?.findViewById<TextView>(R.id.nama_user_navbar)
-            headerNameUser?.text = currentUser.displayName
-        }
-    }
-
     override fun onBackPressed() {
-        if(drawerLayout!!.isDrawerOpen(GravityCompat.START)){
-            drawerLayout!!.closeDrawer(GravityCompat.START)
+        if(drawer_layout.isDrawerOpen(GravityCompat.START)){
+            drawer_layout.closeDrawer(GravityCompat.START)
         } else {
             super.onBackPressed()
         }

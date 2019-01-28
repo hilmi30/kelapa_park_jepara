@@ -8,16 +8,15 @@
     android:background="@color/colorPrimary">
 
     <TextView
-        android:id="@+id/nama_user_navbar"
+        android:id="@+id/cuaca"
         android:paddingStart="16dp"
         android:paddingTop="24dp"
         android:paddingEnd="16dp"
         android:paddingBottom="24dp"
         android:drawablePadding="32dp"
-        android:drawableStart="@drawable/ic_person_pin_black_24dp"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
         android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/example_of_name"/>
+        android:text="@string/cerah"/>
 </LinearLayout>

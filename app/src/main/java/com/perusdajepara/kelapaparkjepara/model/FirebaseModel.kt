@@ -1,4 +1,4 @@
-package com.perusdajepara.kelapaparkjepara
+package com.perusdajepara.kelapaparkjepara.model
 
 /**
  * Created by mrdoyon on 3/29/18.

@@ -96,4 +96,8 @@
     <string name="pria">Pria</string>
     <string name="wanita">Wanita</string>
     <string name="jenis_kelamin">Jenis Kelamin</string>
+    <string name="terjadi_kesalahan">Terjadi Kesalahan</string>
+    <string name="tersedia">(Tersedia)</string>
+    <string name="cerah">CERAH</string>
+    <string name="_27_c">27 C</string>
 </resources>

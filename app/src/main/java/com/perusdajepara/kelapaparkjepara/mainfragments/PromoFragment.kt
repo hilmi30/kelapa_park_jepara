@@ -13,7 +13,7 @@ import android.widget.TextView
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.google.firebase.database.*
 import com.perusdajepara.kelapaparkjepara.detail.DetailPromoActivity
-import com.perusdajepara.kelapaparkjepara.FirebaseModel
+import com.perusdajepara.kelapaparkjepara.model.FirebaseModel
 import com.perusdajepara.kelapaparkjepara.R
 
 

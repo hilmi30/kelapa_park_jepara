@@ -15,13 +15,10 @@ import com.bumptech.glide.Glide
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.perusdajepara.kelapaparkjepara.FirebaseModel
+import com.perusdajepara.kelapaparkjepara.model.FirebaseModel
 
 import com.perusdajepara.kelapaparkjepara.R
 import com.perusdajepara.kelapaparkjepara.detail.DetailPaketActivity
-import com.squareup.picasso.Picasso
-import de.hdodenhof.circleimageview.CircleImageView
-import org.fabiomsr.moneytextview.MoneyTextView
 
 
 /**

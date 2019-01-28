@@ -44,6 +44,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/makanan_harga"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
