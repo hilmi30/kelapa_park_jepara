@@ -8,15 +8,26 @@
     android:background="@color/colorPrimary">
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/kelapa_park_saat_ini"
+        android:textColor="@color/white"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:textSize="12sp"/>
+
+    <TextView
         android:id="@+id/cuaca"
-        android:paddingStart="16dp"
-        android:paddingTop="24dp"
-        android:paddingEnd="16dp"
-        android:paddingBottom="24dp"
         android:drawablePadding="32dp"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
         android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/cerah"/>
+        android:text="@string/cerah"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"/>
+
 </LinearLayout>
