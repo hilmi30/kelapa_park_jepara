@@ -45,10 +45,10 @@ class TentangActivity : AppCompatActivity(), ValueEventListener {
         val value = p0?.value.toString()
         when(p0?.key){
             "phone1" -> {
-                phone1Tv?.text = value
+                phone1Tv?.text = if (!p0.exists()) "-" else value
             }
             "phone2" -> {
-                phone2Tv?.text = value
+                phone2Tv?.text = if (!p0.exists()) "-" else value
             }
         }
     }

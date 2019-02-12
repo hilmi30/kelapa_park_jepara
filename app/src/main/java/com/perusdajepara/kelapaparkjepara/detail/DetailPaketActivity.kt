@@ -57,7 +57,7 @@ class DetailPaketActivity : AppCompatActivity() {
 
                 detail_paket_nama.text = paketModel?.nama
                 detail_paket_ket.text = paketModel?.keterangan
-                detail_paket_desc.text = paketModel?.keterangan
+                detail_paket_desc.text = paketModel?.deskripsi
                 detail_paket_harga.text = numberFormat.format(paketModel?.harga)
 
                 // view pager untuk image slider
